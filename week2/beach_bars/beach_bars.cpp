@@ -81,7 +81,6 @@ void run(){
     for (auto e: locations){
             
         int dist;
-        //left and right overlap
         int left_boundary = (e-100 < 0 ? 0 : e-100);
         int right_boundary = (e+100 >= counts.size() ? counts.size()-1 : e+100);
 
