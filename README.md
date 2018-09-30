@@ -18,4 +18,4 @@
 | 1         | Even matrices    | 70  | partial sums                                 |
 | PotW 1    | Deck of cards    | 100 | sliding window                               |
 | 2         | Beach bars       | 100 | partial sums, sliding window                 |
-| 2         | Burning coins    | 100 | Dynamic Programming (Memoization), 2 tables  |
+| 2         | Burning coins    | 100 | dynamic programming (memoization), 2 tables  |
