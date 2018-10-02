@@ -7,21 +7,17 @@ using namespace std;
 
 double rec(int k, double m, int depth, int n, double p, vector<vector<double>> &table, vector<double> &probs){
 
-    //if we have the goal of m already, return 1 (shortcut)
-    if (k >= m)
-        return 1;
-
     //recursion termination: after the last game n, we need at least m money
-    if (depth == n && k >= m)
+    if (k >= m)
         return 1;
     if (depth == n && k < m)
         return 0;
     
-    //int money = (k > m ? m : k); //table limit is m, if k is bigger than that just cut it back to m since probability will be 1 anyways
+    int money = (k > m ? m : k); //table limit is m, if k is bigger than that just cut it back to m since probability will be 1 anyways
     int money = k;
 
-    if (table[k][depth] != -1){ //table limit is m, at this point k will be at smaller than m because of the shortcut above
-        return table[k][depth];
+    if (table[money][depth] != -1){ //table limit is m, at this point k will be at smaller than m because of the shortcut above
+        return table[money][depth];
     } else {
         double max = 0;
         double prob = probs[depth+1];
