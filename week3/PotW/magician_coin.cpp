@@ -1,11 +1,12 @@
 #include <iostream>
 #include <vector>
 #include <iomanip>
+#include <cmath>
 
 using namespace std;
 
 
-double rec(int k, double m, int depth, int n, double p, vector<vector<double>> &table, vector<double> &probs){
+double rec(int k, int m, int depth, int n, vector<vector<double>> &table, vector<double> &probs){
 
     //recursion termination: after the last game n, we need at least m money
     if (k >= m)
@@ -13,16 +14,13 @@ double rec(int k, double m, int depth, int n, double p, vector<vector<double>> &
     if (depth == n && k < m)
         return 0;
     
-    int money = (k > m ? m : k); //table limit is m, if k is bigger than that just cut it back to m since probability will be 1 anyways
-    int money = k;
-
-    if (table[money][depth] != -1){ //table limit is m, at this point k will be at smaller than m because of the shortcut above
-        return table[money][depth];
+    if (table[k][depth] != -1){
+        return table[k][depth];
     } else {
         double max = 0;
-        double prob = probs[depth+1];
-        for (int i = 0; i <= money; i++){ //again only loop up to at most m, for larger k we would have taken the shortcut
-            double temp = p * rec(k+i, m, depth+1, n, prob, table, probs) + (1-p) * rec(k-i, m, depth+1, n, prob, table, probs);
+        double p = probs[depth];
+        for (int i = 0; i <= k; i++){
+            double temp = p * rec(k+i, m, depth+1, n, table, probs) + (1-p) * rec(k-i, m, depth+1, n, table, probs);
             if(temp > max)
                 max = temp;
         }
@@ -46,7 +44,7 @@ void run(){
     vector<vector<double>> max_prob(m+1, vector<double>(n, -1));
 
     cout << fixed << setprecision(5);
-    cout << rec(k,m,0,n,probs[0], max_prob, probs) << "\n";
+    cout << rec(k,m,0,n,max_prob, probs) << "\n";
 }
 
 int main(){
