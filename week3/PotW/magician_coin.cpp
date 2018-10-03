@@ -5,8 +5,10 @@
 
 using namespace std;
 
+vector<vector<double>> max_prob;
+vector<double> probs;
 
-double rec(int k, int m, int depth, int n, vector<vector<double>> &table, vector<double> &probs){
+double rec(int k, int m, int depth, int n){
 
     //recursion termination: after the last game n, we need at least m money
     if (k >= m)
@@ -14,17 +16,17 @@ double rec(int k, int m, int depth, int n, vector<vector<double>> &table, vector
     if (depth == n && k < m)
         return 0;
     
-    if (table[k][depth] != -1){
-        return table[k][depth];
+    if (max_prob[k][depth] != -1){
+        return max_prob[k][depth];
     } else {
         double max = 0;
         double p = probs[depth];
         for (int i = 0; i <= k; i++){
-            double temp = p * rec(k+i, m, depth+1, n, table, probs) + (1-p) * rec(k-i, m, depth+1, n, table, probs);
+            double temp = p * rec(k+i, m, depth+1, n) + (1-p) * rec(k-i, m, depth+1, n);
             if(temp > max)
                 max = temp;
         }
-        table[k][depth] = max;
+        max_prob[k][depth] = max;
         return max;
     }
 }
@@ -34,17 +36,17 @@ void run(){
     int n; cin >> n;
     int k; cin >> k;
     int m; cin >> m;
-    vector<double> probs(n);
+    probs = vector<double>(n);
 
     for (int i = 0; i < n; i++){
         double temp; cin >> temp;
         probs[i] = temp;
     }
     
-    vector<vector<double>> max_prob(m+1, vector<double>(n, -1));
+    max_prob = vector<vector<double>> (m+1, vector<double>(n, -1));
 
     cout << fixed << setprecision(5);
-    cout << rec(k,m,0,n,max_prob, probs) << "\n";
+    cout << rec(k,m,0,n) << "\n";
 }
 
 int main(){
