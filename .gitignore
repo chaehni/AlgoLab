@@ -26,8 +26,8 @@
 *.exe
 *.app
 
-*/*/CMakeFiles/
+**/CMakeFiles/
 *.cmake
-*/*/CMakeCache\.txt
-*/**t/CMakeLists\.txt
-*/*/Makefile
+**/CMakeCache\.txt
+**/CMakeLists.txt
+**/Makefile

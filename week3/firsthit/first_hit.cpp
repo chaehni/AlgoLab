@@ -1,7 +1,7 @@
 #include <iostream>
-#include <CGAL/Exact_predicates_inexact_constructions_kernel.h>
+#include <CGAL/Exact_predicates_exact_constructions_kernel.h>
 
-typedef CGAL::Exact_predicates_inexact_constructions_kernel K;
+typedef CGAL::Exact_predicates_exact_constructions_kernel K;
 typedef K::Segment_2 Segment;
 typedef K::Ray_2 Ray;
 typedef K::Point_2 Point;
@@ -18,7 +18,7 @@ double floor_to_double(const K::FT& x) {
     return a;
 }
 
-void check_first(const Point p, Point &first){
+void check_first(const Point &p, Point &first){
     if(set){
         if(CGAL::squared_distance(ray.source(), p) < CGAL::squared_distance(ray.source(), first))
            first = p;
@@ -31,6 +31,7 @@ void check_first(const Point p, Point &first){
 int main(){
 
     ios_base::sync_with_stdio(false);
+    cout << fixed << setprecision(0);
 
     long x, y, a, b;
     long r, s, t, u;

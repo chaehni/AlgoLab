@@ -22,3 +22,5 @@
 | 2         | Search Snippets                  | ---    |   |
 | 2         | The Great Game                   | ---    |   |
 | PotW 3    | Magician and the Coin            | 80 (public) | backward recursion with memoization |
+| 3         | Hit                              | 100    | intersection                                 |
+| 3         | First hit                        | 99     | intersection                                 |
