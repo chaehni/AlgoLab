@@ -21,6 +21,7 @@
 | 2         | Burning Coins                    | 100    | dynamic programming (memoization), 2 tables  |
 | 2         | Search Snippets                  | ---    |   |
 | 2         | The Great Game                   | ---    |   |
-| PotW 3    | Magician and the Coin            | 80 (public) | backward recursion with memoization |
+| PotW 3    | Magician and the Coin            | 100    | backward recursion with memoization          |
 | 3         | Hit                              | 100    | intersection                                 |
 | 3         | First hit                        | 99     | intersection                                 |
+| PotW 4    | Defensive Line                   | 80     | sliding window & DP                          |
