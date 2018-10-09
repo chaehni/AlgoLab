@@ -24,4 +24,6 @@
 | PotW 3    | Magician and the Coin            | 100    | backward recursion with memoization          |
 | 3         | Hit                              | 100    | intersection                                 |
 | 3         | First hit                        | 99     | intersection                                 |
+| 3         | Antenna                          | 100    | Min_circle                                   |
+| 3         | Almost antenna                   | 100    | Min_circle, supoort points                   |
 | PotW 4    | Defensive Line                   | 80     | sliding window & DP                          |

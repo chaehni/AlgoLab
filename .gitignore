@@ -31,3 +31,5 @@
 **/CMakeCache\.txt
 **/CMakeLists.txt
 **/Makefile
+
+*.bak
