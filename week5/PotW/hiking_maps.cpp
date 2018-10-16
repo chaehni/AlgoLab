@@ -10,39 +10,58 @@ typedef K::Line_2 Line;
 
 using namespace std;
 
-bool inside(Tri* triangle, Segment* segment){
-    if(CGAL::do_intersect(*triangle, *segment)){
-        auto in = CGAL::intersection(*triangle, *segment);
-        if (const Segment* s2 = boost::get<Segment>(&*in)){
-            return *s2 == *segment;
-        }
+bool inside(vector<pair<Point, Point>> t, pair<Point, Point> s){
+    //for each line in triangle, all other lines and the two points from leg have to be on the same side
+    if (CGAL::orientation(t[0].first(), t[0].second(), s[0]) != CGAL::orientation(t[0].first(), t[0].second(), s[1])){
+        // segment end points are on different sides of first triangle side
+        return false;
     }
-    return false;
+    // both endpoints are on same side of first triangle side, is it the correct side?
+    if (CGAL::orientation(t[0].first(), t[0].second(), s[0]) != CGAL::orientation(t[0].first(), t[0].second(), t[1].first())){
+        // segment end points are on different sides of first triangle side
+        return false;
+    }
+
+    if (CGAL::orientation(t[1].first(), t[1].second(), s[0]) != CGAL::orientation(t[1].first(), t[1].second(), s[1])){
+        // segment end points are on different sides of first triangle side
+        return false;
+    }
+    // both endpoints are on same side of first triangle side, is it the correct side?
+    if (CGAL::orientation(t[1].first(), t[1].second(), s[0]) != CGAL::orientation(t[1].first(), t[1].second(), t[0].first())){
+        // segment end points are on different sides of first triangle side
+        return false;
+    }
+
+    if (CGAL::orientation(t[2].first(), t[2].second(), s[0]) != CGAL::orientation(t[2].first(), t[2].second(), s[1])){
+        // segment end points are on different sides of first triangle side
+        return false;
+    }
+    // both endpoints are on same side of first triangle side, is it the correct side?
+    if (CGAL::orientation(t[2].first(), t[2].second(), s[0]) != CGAL::orientation(t[2].first(), t[2].second(), t[0].first())){
+        // segment end points are on different sides of first triangle side
+        return false;
+    }
+
+    return true;
 }
+
+
 
 Point* readPoint(){
     int x, y; cin >> x >> y;
     return new Point(x, y);
 }
 
-Tri* readTriangle(){
+vector<pair<Point, Point>> readTriangle(){
 
     int p0, p1, p2, p3, p4, p5, p6, p7, p8, p9, p10, p11;
     cin >> p0 >>  p1 >> p2 >> p3 >> p4 >> p5 >> p6 >> p7 >> p8 >> p9 >> p10 >> p11; 
 
-    Line ln1 = Line(Point(p0, p2), Point(p2, p3));
-    Line ln2 = Line(Point(p4, p5), Point(p6, p7));
-    Line ln3 = Line(Point(p8, p9), Point(p10, p11));
+    pair<Point, Point> pa = make_pair(Point(p0, p1), Point(p2, p3));
+    pair<Point, Point> pb = make_pair(Point(p4, p5), Point(p6, p7));
+    pair<Point, Point> pc = make_pair(Point(p8, p9), Point(p10, p11));
 
-    auto ia = CGAL::intersection(ln1, ln2);
-    auto ib = CGAL::intersection(ln2, ln3);
-    auto ic = CGAL::intersection(ln1, ln3);
-
-    Point* a = boost::get<Point>(&*ia);
-    Point* b = boost::get<Point>(&*ib);
-    Point* c = boost::get<Point>(&*ic);
-
-    return new Tri(*a, *b, *c);
+    return vector<pair<Point, Point>>{pa, pb, pc};
 }
 
 void run(){
@@ -51,16 +70,15 @@ void run(){
     int n; // n maps
     cin >> m >> n;
 
-    vector<Segment> legs(m-1);
-    Tri* tri;
+    vector<pair<Point, Point>> legs(m-1);
+    vector<pair<Point, Point>> tri;
     vector<set<int>> legs_in_map(n); //a set of all the legs in a given map
-    
 
     // read the legs
     Point source = *readPoint();
     for(int i = 0; i < m-1; i++){
         Point target = *readPoint();
-        legs[i] = Segment(source, target);
+        legs[i] = make_pair(source, target);
         source = target;
     }
 
@@ -71,12 +89,11 @@ void run(){
 
         // iterate over all legs and check if they are contained in the triangle
         for (int j = 0; j < m-1; j++){
-            if (inside(tri, &legs[j])){
+            if (inside(tri, legs[j])){
                 legs_in_map[i].insert(j);
             }
         }
     }
-    cout << (*tri).vertex(0) << " " << (*tri).vertex(1) << " " << (*tri).vertex(2) << endl;
 
     int min_cost = n;
     int e = 0;
