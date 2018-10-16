@@ -1,8 +1,9 @@
 #include <iostream>
 #include <set>
-#include <CGAL/Exact_predicates_exact_constructions_kernel.h>
+#include <CGAL/Exact_predicates_inexact_constructions_kernel.h>
+#include <CGAL/enum.h>
 
-typedef CGAL::Exact_predicates_exact_constructions_kernel K;
+typedef CGAL::Exact_predicates_inexact_constructions_kernel K;
 typedef K::Segment_2 Segment;
 typedef K::Triangle_2 Tri;
 typedef K::Point_2 Point;
@@ -10,49 +11,37 @@ typedef K::Line_2 Line;
 
 using namespace std;
 
-bool inside(vector<pair<Point, Point>> t, pair<Point, Point> s){
+bool inside(vector<pair<Point, Point>> &t, pair<Point, Point> &s){
+    
     //for each line in triangle, all other lines and the two points from leg have to be on the same side
-    if (CGAL::orientation(t[0].first(), t[0].second(), s[0]) != CGAL::orientation(t[0].first(), t[0].second(), s[1])){
-        // segment end points are on different sides of first triangle side
-        return false;
-    }
-    // both endpoints are on same side of first triangle side, is it the correct side?
-    if (CGAL::orientation(t[0].first(), t[0].second(), s[0]) != CGAL::orientation(t[0].first(), t[0].second(), t[1].first())){
-        // segment end points are on different sides of first triangle side
-        return false;
-    }
+    for (int i = 0; i < 3; i++){
 
-    if (CGAL::orientation(t[1].first(), t[1].second(), s[0]) != CGAL::orientation(t[1].first(), t[1].second(), s[1])){
-        // segment end points are on different sides of first triangle side
-        return false;
-    }
-    // both endpoints are on same side of first triangle side, is it the correct side?
-    if (CGAL::orientation(t[1].first(), t[1].second(), s[0]) != CGAL::orientation(t[1].first(), t[1].second(), t[0].first())){
-        // segment end points are on different sides of first triangle side
-        return false;
-    }
+        auto correct_side = CGAL::orientation(t[i].first, t[i].second, t[(i+1)%3].first);
 
-    if (CGAL::orientation(t[2].first(), t[2].second(), s[0]) != CGAL::orientation(t[2].first(), t[2].second(), s[1])){
-        // segment end points are on different sides of first triangle side
-        return false;
-    }
-    // both endpoints are on same side of first triangle side, is it the correct side?
-    if (CGAL::orientation(t[2].first(), t[2].second(), s[0]) != CGAL::orientation(t[2].first(), t[2].second(), t[0].first())){
-        // segment end points are on different sides of first triangle side
-        return false;
-    }
+        // both points of segment have to lie on correct_side or be collinear
+        auto side = CGAL::orientation(t[i].first, t[i].second, s.first);
+        if (side != correct_side){
+            if(side != CGAL::COLLINEAR){
+                return false;
+            }
+        }
 
+        side = CGAL::orientation(t[i].first, t[i].second, s.second);
+        if (side != correct_side){
+            if(side != CGAL::COLLINEAR){
+                return false;
+            }
+        }
+    }
     return true;
 }
-
-
 
 Point* readPoint(){
     int x, y; cin >> x >> y;
     return new Point(x, y);
 }
 
-vector<pair<Point, Point>> readTriangle(){
+vector<pair<Point, Point>>* readTriangle(){
 
     int p0, p1, p2, p3, p4, p5, p6, p7, p8, p9, p10, p11;
     cin >> p0 >>  p1 >> p2 >> p3 >> p4 >> p5 >> p6 >> p7 >> p8 >> p9 >> p10 >> p11; 
@@ -61,7 +50,7 @@ vector<pair<Point, Point>> readTriangle(){
     pair<Point, Point> pb = make_pair(Point(p4, p5), Point(p6, p7));
     pair<Point, Point> pc = make_pair(Point(p8, p9), Point(p10, p11));
 
-    return vector<pair<Point, Point>>{pa, pb, pc};
+    return new vector<pair<Point, Point>>{pa, pb, pc};
 }
 
 void run(){
@@ -71,7 +60,7 @@ void run(){
     cin >> m >> n;
 
     vector<pair<Point, Point>> legs(m-1);
-    vector<pair<Point, Point>> tri;
+    vector<pair<Point, Point>> tri(3); //3 pairs of points for the 3 lines
     vector<set<int>> legs_in_map(n); //a set of all the legs in a given map
 
     // read the legs
@@ -85,8 +74,8 @@ void run(){
     // read the triangular maps
     for (int i = 0; i < n; i++){
 
-        tri = readTriangle();
-
+        tri = *readTriangle();
+   
         // iterate over all legs and check if they are contained in the triangle
         for (int j = 0; j < m-1; j++){
             if (inside(tri, legs[j])){

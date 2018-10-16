@@ -26,4 +26,10 @@
 | 3         | First hit                        | 99     | intersection                                 |
 | 3         | Antenna                          | 100    | Min_circle                                   |
 | 3         | Almost antenna                   | 100    | Min_circle, supoort points                   |
-| PotW 4    | Defensive Line                   | 80     | sliding window & DP                          |
+| PotW 4    | Defensive Line                   | 100    | sliding window & DP                          |
+| 5         | Ant Challenge                    | ---    |   |
+| 5         | Buddy Selection                  | ---    |   |
+| 5         | Building a Graph                 | ---    |   |
+| 5         | Important Bridges BGL            | ---    |   |
+| 5         | Shortest Paths                   | ---    |   |
+| PotW 5    | Hiking Maps                      | 100    | inclusion test & sliding window              |
