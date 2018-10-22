@@ -20,8 +20,8 @@
 | 2         | Beach Bars                       | 100    | partial sums, sliding window                 |
 | 2         | Burning Coins                    | 100    | dynamic programming (memoization), 2 tables  |
 | 2         | Search Snippets                  | ---    |   |
-| 2         | The Great Game                   | ---    |   |
-| PotW 3    | Magician and the Coin            | 100    | backward recursion with memoization          |
+| 2         | The Great Game                   | 100    | backward recursion & memoization, 2 tables   |
+| PotW 3    | Magician and the Coin            | 100    | backward recursion & memoization             |
 | 3         | Hit                              | 100    | intersection                                 |
 | 3         | First hit                        | 99     | intersection                                 |
 | 3         | Antenna                          | 100    | Min_circle                                   |
