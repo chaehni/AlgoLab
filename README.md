@@ -33,4 +33,9 @@
 | 4         | Important Bridges BGL            | ---    |   |
 | 4         | Shortest Paths                   | ---    |   |
 | PotW 5    | Hiking Maps                      | 100    | inclusion test & sliding window              |
+| 5         | Boats                            | ---    |   |
+| 5         | Attack of the Clones             | ---    |   |
+| 5         | Ligth at the Museum              | ---    |   |
+| 5         | PUnch                            | ---    |   |
+| 5         | High School Teams                | ---    |   |
 | PotW 6    | Planet Express                   | 80     | strong components & Dijkstra                 |
