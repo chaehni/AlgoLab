@@ -33,3 +33,4 @@
 | 4         | Important Bridges BGL            | ---    |   |
 | 4         | Shortest Paths                   | ---    |   |
 | PotW 5    | Hiking Maps                      | 100    | inclusion test & sliding window              |
+| PotW 6    | Planet Express                   | 80     | strong components & Dijkstra                 |
