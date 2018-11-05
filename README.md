@@ -29,7 +29,7 @@
 | PotW 4    | Defensive Line                   | 100    | sliding window & DP                          |
 | 4         | Ant Challenge                    | ---    |   |
 | 4         | Buddy Selection                  | ---    |   |
-| 4         | Building a Graph                 | ---    |   |
+| 4         | Building a Graph                 | 100    | Kurskal, Dijkstra                            |
 | 4         | Important Bridges BGL            | ---    |   |
 | 4         | Shortest Paths                   | ---    |   |
 | PotW 5    | Hiking Maps                      | 100    | inclusion test & sliding window              |
