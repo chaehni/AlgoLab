@@ -27,7 +27,7 @@
 | 3         | Antenna                          | 100    | Min_circle                                   |
 | 3         | Almost antenna                   | 100    | Min_circle, support points                   |
 | PotW 4    | Defensive Line                   | 100    | sliding window & DP                          |
-| 4         | Ant Challenge                    | ---    |   |
+| 4         | Ant Challenge                    | 100    | Kruskal per species, then Dijkstra           |
 | 4         | Buddy Selection                  | ---    |   |
 | 4         | Building a Graph                 | 100    | Kurskal, Dijkstra                            |
 | 4         | Important Bridges BGL            | ---    |   |
@@ -36,7 +36,7 @@
 | 5         | Boats                            | ---    |   |
 | 5         | Attack of the Clones             | ---    |   |
 | 5         | Ligth at the Museum              | ---    |   |
-| 5         | PUnch                            | ---    |   |
+| 5         | Punch                            | ---    |   |
 | 5         | High School Teams                | ---    |   |
 | PotW 6    | Planet Express                   | 80     | strong components & Dijkstra                 |
 | 6         | Coin Tossing                     | ---    |   |
