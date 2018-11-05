@@ -39,3 +39,12 @@
 | 5         | PUnch                            | ---    |   |
 | 5         | High School Teams                | ---    |   |
 | PotW 6    | Planet Express                   | 80     | strong components & Dijkstra                 |
+| 6         | Coin Tossing                     | ---    |   |
+| 6         | Shopping Trip                    | ---    |   |
+| 6         | Kingdom Defence                  | ---    |   |
+| 6         | Tetris                           | ---    |   |
+| PotW 7    | Octopussy                        | ---    |   |
+| 7         | What is the Maximum              | ---    |   |
+| 7         | Diet                             | ---    |   |
+| 7         | Portfolios                       | ---    |   |
+| 7         | Inball                           | ---    |   |
