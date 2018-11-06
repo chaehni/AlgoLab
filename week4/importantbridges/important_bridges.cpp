@@ -5,12 +5,12 @@
 // BGL
 #include<boost/graph/adjacency_list.hpp>
 #include<boost/graph/kruskal_min_spanning_tree.hpp>
-#include<boost/graph/connected_components.hpp>
+#include<boost/graph/biconnected_components.hpp>
 
 using namespace std;
 using namespace boost;
 
-typedef adjacency_list<vecS, vecS, undirectedS> Graph;
+typedef adjacency_list<vecS, vecS, undirectedS, no_property, property<edge_index_t, int>> Graph;
 typedef Graph::edge_descriptor Edge;
 
 void correct_pair(vector<pair<int, int>> &crit, int a, int b){
@@ -37,23 +37,29 @@ void run(){
         edges[i] = make_pair(u,v);
         bool success;
         Edge e;
-        tie(e, success) = add_edge(u, v, G);
+        tie(e, success) = add_edge(u, v, i, G);
     }
 
     vector<pair<int, int>> crit;
-    // for every bridge, remove edge and run a connected_components
-    for  (auto k: edges){
-        int s = k.first;
-        int t = k.second;
-        remove_edge(s, t, G);
-        vector<int> ccmap(n);
-        int ncc = connected_components(G, make_iterator_property_map(ccmap.begin(), get(vertex_index, G)));
-        if (ncc > 1){
-            correct_pair(crit, s, t);
+    vector<int> bcc(m);
+    int nbc = boost::biconnected_components(G, make_iterator_property_map(bcc.begin(), get(boost::edge_index, G)));
+    vector<vector<pair<int, int>>> bridges_in_component(nbc);
+
+    auto es = boost::edges(G);
+    int cnt = 0;
+    for (auto eit = es.first; eit!=es.second; ++eit){
+        auto s = source(*eit, G);
+        auto t = target(*eit, G);
+
+        correct_pair(bridges_in_component[bcc[cnt]], s, t);
+        cnt++;
+    }
+
+    for (int i=0; i < nbc; i++){
+        if(bridges_in_component[i].size() == 1){
+            // found critical bridge
+            crit.push_back(bridges_in_component[i][0]);
         }
-        bool success;
-        Edge e;
-        tie(e, success) = add_edge(s, t, G);
     }
 
     sort(crit.begin(), crit.end(), compare);
@@ -62,7 +68,6 @@ void run(){
     for (auto e: crit){
         cout << e.first << " " << e.second << "\n";
     }
-
 }
 
 int main(){ 
