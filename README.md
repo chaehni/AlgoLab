@@ -28,17 +28,17 @@
 | 3         | Almost antenna                   | 100    | Min_circle, support points                   |
 | PotW 4    | Defensive Line                   | 100    | sliding window & DP                          |
 | 4         | Ant Challenge                    | 100    | Kruskal per species, then Dijkstra           |
-| 4         | Buddy Selection                  | ---    |   |
+| 4         | Buddy Selection                  | 100    | perfect matching                             |
 | 4         | Building a Graph                 | 100    | Kurskal, Dijkstra                            |
-| 4         | Important Bridges BGL            | ---    |   |
-| 4         | Shortest Paths                   | ---    |   |
+| 4         | Important Bridges BGL            | 100    | biconnected graph                            |
+| 4         | Shortest Paths                   | 100    | Dijkstra                                     |
 | PotW 5    | Hiking Maps                      | 100    | inclusion test & sliding window              |
 | 5         | Boats                            | ---    |   |
 | 5         | Attack of the Clones             | ---    |   |
 | 5         | Ligth at the Museum              | ---    |   |
 | 5         | Punch                            | ---    |   |
 | 5         | High School Teams                | ---    |   |
-| PotW 6    | Planet Express                   | 80     | strong components & Dijkstra                 |
+| PotW 6    | Planet Express                   | 100    | strong components & Dijkstra                 |
 | 6         | Coin Tossing                     | ---    |   |
 | 6         | Shopping Trip                    | ---    |   |
 | 6         | Kingdom Defence                  | ---    |   |
