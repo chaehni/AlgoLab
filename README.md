@@ -41,7 +41,7 @@
 | PotW 6    | Planet Express                   | 100    | strong components & Dijkstra                 |
 | 6         | Coin Tossing                     | ---    |   |
 | 6         | Shopping Trip                    | ---    |   |
-| 6         | Kingdom Defence                  | ---    |   |
+| 6         | Kingdom Defence                  | 100    | max flow with edge demand (min capacity)     |
 | 6         | Tetris                           | ---    |   |
 | PotW 7    | Octopussy                        | ---    |   |
 | 7         | What is the Maximum              | ---    |   |
