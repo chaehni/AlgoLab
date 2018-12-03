@@ -4,15 +4,13 @@
 
 using namespace std;
 
-int right_end;
-
 struct Boat{
     int ring;
     int length;
 };
 
 int compare_boats(Boat b1, Boat b2){
-    return max(b1.ring, right_end + b1.length) < max(b2.ring, right_end + b2.length);
+    return b1.ring < b2.ring;
 }
 
 void run(){
@@ -24,16 +22,23 @@ void run(){
         cin >> boats[i].ring;
     }
 
-    int count = 0;
-    right_end = INT32_MIN;
-    for (int i = 0; i < n; i++){
-        
-        // sort boats by earliest finish position
-        sort(boats.begin() + i, boats.end(), compare_boats);
 
-        if (right_end <= boats[i].ring){  // we can place the boat
-            right_end = max(right_end + boats[i].length, boats[i].ring);
-            count++;
+    // sort boats by ring position
+    sort(boats.begin(), boats.end(), compare_boats);
+
+    // just take the boat tied to the first ring
+    int right_end = boats[0].ring;
+    int right_end_old;
+    int count = 1;
+
+    // iterate over boats in increasing ring position
+    for (int i = 1; i < n; i++){
+        if (boats[i].ring < right_end){ // this boat has potential to finish earlier than current right_end (first postion boats can finish is at their ring position)
+            right_end = min(right_end, max(right_end_old + boats[i].length, boats[i].ring)); // check if it really does finish earlier, if yes replace right_end
+        } else { // this boat can't replace the one before, take it and update right_end
+            right_end_old = right_end;
+            right_end = max(right_end_old + boats[i].length, boats[i].ring);
+            count ++;
         }
     }
 

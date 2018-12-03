@@ -33,7 +33,7 @@
 | 4         | Important Bridges BGL            | 100    | biconnected graph                            |
 | 4         | Shortest Paths                   | 100    | Dijkstra                                     |
 | PotW 5    | Hiking Maps                      | 100    | inclusion test & sliding window              |
-| 5         | Boats                            | ---    |   |
+| 5         | Boats                            | 100    | greedy, version of earliest finish time      |
 | 5         | Attack of the Clones             | ---    |   |
 | 5         | Ligth at the Museum              | ---    |   |
 | 5         | Punch                            | ---    |   |
