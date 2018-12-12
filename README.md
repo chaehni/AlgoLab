@@ -44,7 +44,7 @@
 | 6         | Kingdom Defence                  | 100    | max flow with edge demand (min capacity)     |
 | 6         | Tetris                           | ---    |   |
 | PotW 7    | Octopussy                        | ---    |   |
-| 7         | What is the Maximum              | ---    |   |
+| 7         | What is the Maximum              | 100    | quadratic programming                        |
 | 7         | Diet                             | ---    |   |
 | 7         | Portfolios                       | ---    |   |
 | 7         | Inball                           | ---    |   |
