@@ -45,6 +45,6 @@
 | 6         | Tetris                           | ---    |   |
 | PotW 7    | Octopussy                        | ---    |   |
 | 7         | What is the Maximum              | 100    | quadratic programming                        |
-| 7         | Diet                             | ---    |   |
+| 7         | Diet                             | 100    | linear programming                           |
 | 7         | Portfolios                       | ---    |   |
 | 7         | Inball                           | ---    |   |
