@@ -49,7 +49,7 @@
 | 7         | Portfolios                      | ---    |                                             |
 | 7         | Inball                          | ---    |                                             |
 | PotW 8    | London                          | ---    |                                             |
-| 8         | Graypes                         | ---    |                                             |
+| 8         | Graypes                         | 100    | delauny triangulation, taking shortest edge |
 | 8         | Bistro                          | ---    |                                             |
 | 8         | H1N1                            | ---    |                                             |
 | 8         | Germs                           | ---    |                                             |
