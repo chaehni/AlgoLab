@@ -59,7 +59,7 @@
 | 9         | Real Estate Market              | ---    |                                              |
 | 9         | Canteen                         | ---    |                                              |
 | 9         | Marathon                        | ---    |                                              |
-| PotW 10   | GoldenEye                       | 100    | delauny with union find                      |
+| PotW 10   | GoldenEye                       | 100    | voronoi (using delauny) with union find      |
 | 10        | New Tiles                       | ---    |                                              |
 | 10        | On Her Majesty's Secret Service | ---    |                                              |
 | 10        | Light the Stage                 | ---    |                                              |
