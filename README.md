@@ -82,3 +82,4 @@
 | 13        | Cantonal Courier                | ---    |                                              |
 | 13        | Clues                           | ---    |                                              |
 | 13        | Moving Books                    | ---    |                                              |
+| PotW 14   | Fleetrace                       | ---    |                                              |
