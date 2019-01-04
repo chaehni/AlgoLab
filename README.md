@@ -19,7 +19,7 @@
 | PotW 2    | Deck of Cards                   | 100    | sliding window                               |
 | 2         | Beach Bars                      | 100    | partial sums, sliding window                 |
 | 2         | Burning Coins                   | 100    | dynamic programming (memoization), 2 tables  |
-| 2         | Search Snippets                 | ---    |                                              |
+| 2         | Search Snippets                 | 100    | ordering words by occurences, sliding window |
 | 2         | The Great Game                  | 100    | backward recursion & memoization, 2 tables   |
 | PotW 3    | Magician and the Coin           | 100    | backward recursion & memoization             |
 | 3         | Hit                             | 100    | intersection                                 |
