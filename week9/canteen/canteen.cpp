@@ -104,15 +104,15 @@ void run()
     // compute served students and profit
     int flow = boost::push_relabel_max_flow(G, src, sink);
     boost::successive_shortest_path_nonnegative_weights(G, src, sink);
-    int cost = boost::find_flow_cost(G);
+    int result = boost::find_flow_cost(G);
 
-    int profit = flow * 20 - cost;
+    int profit_minus_costs = flow * 20 - result; // result = costs + flow * 20 - profit -> profit - costs = flow * 20 - result
 
     if (flow < students_to_feed)
         cout << "impossible ";
     else
         cout << "possible ";
-    cout << flow << " " << profit << "\n";
+    cout << flow << " " << profit_minus_costs << "\n";
 }
 
 int main()
