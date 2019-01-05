@@ -56,10 +56,10 @@
 | PotW 9    | Suez                            | ---    |                                                         |
 | 9         | Satellites                      | 100    | max card. matching in bipartite graph & König algorithm |
 | 9         | Algocoön                        | 100    | max flow / min cut with multiple min cuts               |
-| 9         | Real Estate Market              | ---    |                                                         |
+| 9         | Real Estate Market              | 100    | minimum cost matching                                   |
 | 9         | Canteen                         | ---    |                                                         |
 | 9         | Marathon                        | ---    |                                                         |
-| PotW 10   | GoldenEye                       | 100    | voronoi (using delauny) with union find                 |
+| PotW 10   | GoldenEye                       | 100    | voronoi (using delauny) & union find                    |
 | 10        | New Tiles                       | ---    |                                                         |
 | 10        | On Her Majesty's Secret Service | ---    |                                                         |
 | 10        | Light the Stage                 | ---    |                                                         |
