@@ -55,7 +55,7 @@
 | 8         | Germs                           | 100    | delauny for nearest neighbour graph                     |
 | PotW 9    | Suez                            | ---    |                                                         |
 | 9         | Satellites                      | 100    | max card. matching in bipartite graph & König algorithm |
-| 9         | Algocoön                        | ---    |                                                         |
+| 9         | Algocoön                        | 100    | max flow / min cut with multiple min cuts               |
 | 9         | Real Estate Market              | ---    |                                                         |
 | 9         | Canteen                         | ---    |                                                         |
 | 9         | Marathon                        | ---    |                                                         |
