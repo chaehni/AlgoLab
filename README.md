@@ -51,7 +51,7 @@
 | PotW 8    | London                          | ---    |                                                                   |
 | 8         | Graypes                         | 100    | delauny triangulation, taking shortest edge                       |
 | 8         | Bistro                          | 100    | voronoi using delauny triangulation                               |
-| 8         | H1N1                            | 60     | delauny/voronoi duality and DFS to find exit                      |
+| 8         | H1N1                            | 100    | delauny/voronoi duality and precomputing largest escape path      |
 | 8         | Germs                           | 100    | delauny for nearest neighbour graph                               |
 | PotW 9    | Suez                            | ---    |                                                                   |
 | 9         | Satellites                      | 100    | max card. matching in bipartite graph & König algorithm           |
