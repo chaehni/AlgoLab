@@ -40,7 +40,7 @@
 | 5         | High School Teams               | ---    |                                                                   |
 | PotW 6    | Planet Express                  | 100    | strong components & Dijkstra                                      |
 | 6         | Coin Tossing                    | ---    |                                                                   |
-| 6         | Shopping Trip                   | ---    |                                                                   |
+| 6         | Shopping Trip                   | 100    | max flow, adding edges between junctions both ways                |
 | 6         | Kingdom Defence                 | 100    | max flow with edge demand (min capacity)                          |
 | 6         | Tetris                          | ---    |                                                                   |
 | PotW 7    | Octopussy                       | ---    |                                                                   |
