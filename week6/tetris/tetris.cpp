@@ -88,7 +88,7 @@ void run()
     {
         int a, b;
         cin >> a >> b;
-        if (a > b) // edge need to go from smaller to bigger end
+        if (a > b) // edges need to go from smaller to bigger end
             swap(a, b);
 
         eag.addEdge(2 * a + 1, 2 * b, 1);
