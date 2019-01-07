@@ -58,7 +58,7 @@
 | 9         | Algocoön                        | 100    | max flow / min cut with multiple min cuts                              |
 | 9         | Real Estate Market              | 100    | min cost matching                                                      |
 | 9         | Canteen                         | 100    | min cost max flow, days as nodes and edges between days as fridge      |
-| 9         | Marathon                        | ---    |                                                                        |
+| 9         | Marathon                        | 100    | multiple max flow min cost & binary search to find the optimal flow    |
 | PotW 10   | GoldenEye                       | 100    | voronoi (using delauny) & union find                                   |
 | 10        | New Tiles                       | ---    |                                                                        |
 | 10        | On Her Majesty's Secret Service | ---    |                                                                        |
