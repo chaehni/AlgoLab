@@ -59,7 +59,7 @@ void run()
     cin >> w >> n;
 
     // Create Graph and Maps
-    Graph G(2 * (w + 1)); // all nodes are split into 2 nodes except 0 and w
+    Graph G(2 * (w + 1)); // all nodes are split into in- and out nodes
     EdgeCapacityMap capacitymap = boost::get(boost::edge_capacity, G);
     ReverseEdgeMap revedgemap = boost::get(boost::edge_reverse, G);
     ResidualCapacityMap rescapacitymap = boost::get(boost::edge_residual_capacity, G);
