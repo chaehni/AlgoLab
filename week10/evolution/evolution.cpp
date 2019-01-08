@@ -20,6 +20,7 @@ struct Query
     int age;
     string species;
 };
+
 void run()
 {
     int n, q;
@@ -32,18 +33,19 @@ void run()
         string name;
         int age;
         cin >> name >> age;
-        species[name] = Species(name, age, vector<string>());
+        vector<string> temp;
+        species.insert(make_pair(name, Species(name, age, temp)));
     }
 
-    /* // read offspring relations
+    // read offspring relations
     for (int i = 0; i < n - 1; i++)
     {
         string off, ances;
         cin >> off >> ances;
         species[ances].children.push_back(off);
-    } */
-
-    /*  // read queries
+    }
+    /*
+    // read queries
     vector<string> results(q);
     map<string, vector<Query>> query_species;
     for (int i = 0; i < q; i++)
