@@ -63,7 +63,7 @@
 | 10        | New Tiles                       | ---    |                                                                        |
 | 10        | On Her Majesty's Secret Service | ---    |                                                                        |
 | 10        | Light the Stage                 | ---    |                                                                        |
-| 10        | Evolution                       | ---    |                                                                        |
+| 10        | Evolution                       | 100    | binary search on each interval found by DFS                            |
 | 10        | Return of the Jedi              | ---    |                                                                        |
 | 10        | Poker Chips                     | ---    |                                                                        |
 | PotW 11   | India                           | ---    |                                                                        |
