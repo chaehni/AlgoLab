@@ -23,7 +23,7 @@
 | 2         | The Great Game                  | 100    | backward recursion & memoization, 2 tables                             |
 | PotW 3    | Magician and the Coin           | 100    | backward recursion & memoization                                       |
 | 3         | Hit                             | 100    | intersection                                                           |
-| 3         | First hit                       | 99     | intersection                                                           |
+| 3         | First hit                       | 100    | intersection, shuffle input and clip ray to avoid costly intersections |
 | 3         | Antenna                         | 100    | Min_circle                                                             |
 | 3         | Almost antenna                  | 100    | Min_circle, support points                                             |
 | PotW 4    | Defensive Line                  | 100    | sliding window & DP                                                    |
