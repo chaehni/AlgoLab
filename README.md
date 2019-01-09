@@ -46,7 +46,7 @@
 | PotW 7    | Octopussy                       | ---    |                                                                        |
 | 7         | What is the Maximum             | 100    | quadratic programming                                                  |
 | 7         | Diet                            | 100    | linear programming                                                     |
-| 7         | Portfolios                      | ---    |                                                                        |
+| 7         | Portfolios                      | 100    | quadratic programming, minimize over variance matrix                   |
 | 7         | Inball                          | ---    |                                                                        |
 | PotW 8    | London                          | ---    |                                                                        |
 | 8         | Graypes                         | 100    | delauny triangulation, taking shortest edge                            |
