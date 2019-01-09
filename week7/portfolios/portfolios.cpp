@@ -21,9 +21,6 @@ struct Asset
 
 void run(int n, int m)
 {
-    vector<Asset> assets(n);
-    vector<vector<int>> covars(n, vector<int>(n));
-
     // set up quadratic program, cannot buy negative amount of assets -> lower bound = 0
     Program qp(CGAL::SMALLER, true, 0, false, 0);
 
