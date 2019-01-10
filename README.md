@@ -35,7 +35,7 @@
 | PotW 5    | Hiking Maps                     | 100    | inclusion test & sliding window                                            |
 | 5         | Boats                           | 100    | greedy, version of earliest finish time                                    |
 | 5         | Attack of the Clones            | 100    | greedy, eraliest deadline first with circle                                |
-| 5         | Ligth at the Museum             | ---    |                                                                            |
+| 5         | Ligth at the Museum             | 100    | brute force all switch configurations using split & list                   |
 | 5         | Punch                           | ---    |                                                                            |
 | 5         | High School Teams               | ---    |                                                                            |
 | PotW 6    | Planet Express                  | 100    | strong components & Dijkstra                                               |
