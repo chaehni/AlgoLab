@@ -36,7 +36,7 @@
 | 5         | Boats                           | 100    | greedy, version of earliest finish time                                    |
 | 5         | Attack of the Clones            | 100    | greedy, eraliest deadline first with circle                                |
 | 5         | Ligth at the Museum             | 100    | brute force all switch configurations using split & list                   |
-| 5         | Punch                           | ---    |                                                                            |
+| 5         | Punch                           | 100    | dynamic programming, 2D table for beverages * liters                       |
 | 5         | High School Teams               | ---    |                                                                            |
 | PotW 6    | Planet Express                  | 100    | strong components & Dijkstra                                               |
 | 6         | Coin Tossing                    | 100    | max flow, making sure claimed scores and flow match number of games        |
