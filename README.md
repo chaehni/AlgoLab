@@ -43,7 +43,7 @@
 | 6         | Shopping Trip                   | 100    | max flow, adding edges between junctions in both directions                |
 | 6         | Kingdom Defence                 | 100    | max flow with edge demand (min capacity)                                   |
 | 6         | Tetris                          | 100    | max flow with splitting nodes into in- and out-nodes (vertex capacity)     |
-| PotW 7    | Octopussy                       | ---    |                                                                            |
+| PotW 7    | Octopussy                       | 100    | greedy with recursive dependency resolution                                |
 | 7         | What is the Maximum             | 100    | quadratic programming                                                      |
 | 7         | Diet                            | 100    | linear programming                                                         |
 | 7         | Portfolios                      | 100    | quadratic programming, minimize over variance matrix                       |
