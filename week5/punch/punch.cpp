@@ -35,19 +35,19 @@ void run()
     {
         for (int j = 0; j < n; j++)
         {
-            // we have 4 options:
+            // we have 3 options:
             // * don't take the jth beverage and use just beverages 0 to j-1
             // * we take  beverage j and one unit is enough to get i liters
-            // * we take  beverage j and one unit is not enough to get i liters, cover the rest with beverages 0 to j-1
             // * we take  beverage j and one unit is not enough to get i liters, cover the rest with beverages 0 to j
             // in the end, compare options and choose best
 
-            pair<int, int> o1 = (j != 0 ? table[i][j - 1] : make_pair(inf, 0));                                                                                            // take same as before
-            pair<int, int> o2 = (i - vol[j] <= 0 ? make_pair(cost[j], 1) : make_pair(inf, 0));                                                                             // take one of current drink
-            pair<int, int> o3 = (i - vol[j] > 0 && j != 0 ? make_pair(table[i - vol[j]][j - 1].first + cost[j], table[i - vol[j]][j - 1].second + 1) : make_pair(inf, 0)); // take one of j and fill up rest with drinks 0 to j-1
-            pair<int, int> o4 = (i - vol[j] > 0 ? make_pair(table[i - vol[j]][j].first + cost[j], table[i - vol[j]][j].second) : make_pair(inf, 0));                       // take one of j and fill up rest with drinks 0 to j
+            pair<int, int> o1 = (j != 0 ? table[i][j - 1] : make_pair(inf, 0));                                                               // take same as before
+            pair<int, int> o2 = (i - vol[j] <= 0 ? make_pair(cost[j], 1) : make_pair(inf, 0));                                                // take one of current drink                                                                                                                                                                                                  // take one of j and fill up rest with drinks 0 to j-1
+            pair<int, int> o3 = (i - vol[j] > 0 ? make_pair(table[i - vol[j]][j].first + cost[j],                                             // take one of j and fill up rest with drinks 0 to j
+                                                            table[i - vol[j]][j].second + (table[i - vol[j]][j] == table[i - vol[j]][j - 1])) // if we took the value from the left, this is the first time we take drink j -> add one to second
+                                                : make_pair(inf, 0));
 
-            table[i][j] = compare(compare(o1, o2), compare(o3, o4));
+            table[i][j] = compare(compare(o1, o2), o3);
         }
     }
     cout << table[k][n - 1].first << " " << table[k][n - 1].second << "\n";
