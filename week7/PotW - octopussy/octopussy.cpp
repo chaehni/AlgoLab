@@ -32,7 +32,7 @@ void run()
         return b1.t < b2.t;
     });
 
-    // defuse bomb in explode time order, if a bomb needs other bombs to be defused first, defuse them recrsively in explode time order
+    // defuse bomb in explode time order, if a bomb needs other bombs to be defused first, defuse them recursively in explode time order
     int elapsed = 0;
     bool explosion = false;
     stack<Bomb> s;
@@ -135,6 +135,7 @@ void run()
 
 int main()
 {
+    ios_base::sync_with_stdio(false);
     int n;
     cin >> n;
     while (n--)
