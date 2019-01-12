@@ -15,7 +15,7 @@
 | 1         | Build the sum                   | 100    | naive linear                                                               |
 | 1         | Dominoes                        | 100    | naive linear                                                               |
 | 1         | Even Pairs                      | 100    | Partial sums, binomial coefficient                                         |
-| 1         | Even Matrices                   | 70     | partial sums                                                               |
+| 1         | Even Matrices                   | 100    | dimension reduction & partial sums                                         |
 | PotW 2    | Deck of Cards                   | 100    | sliding window                                                             |
 | 2         | Beach Bars                      | 100    | partial sums, sliding window                                               |
 | 2         | Burning Coins                   | 100    | dynamic programming (memoization), 2 tables                                |
@@ -37,7 +37,7 @@
 | 5         | Attack of the Clones            | 100    | greedy, eraliest deadline first with circle                                |
 | 5         | Ligth at the Museum             | 100    | brute force all switch configurations using split & list                   |
 | 5         | Punch                           | 100    | dynamic programming, 2D table for beverages * liters                       |
-| 5         | High School Teams               | ---    |                                                                            |
+| 5         | High School Teams               | 100    | split & list, brute force all combinations with at most k refs, for those brute force all team combinations                                                                      |
 | PotW 6    | Planet Express                  | 100    | strong components & Dijkstra                                               |
 | 6         | Coin Tossing                    | 100    | max flow, making sure claimed scores and flow match number of games        |
 | 6         | Shopping Trip                   | 100    | max flow, adding edges between junctions in both directions                |
