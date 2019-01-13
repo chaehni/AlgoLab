@@ -62,7 +62,7 @@ using namespace std;
 // maps A to 0, B to 1, C to 2, etc.
 int CharToInt(char c)
 {
-    return (int)(c)-65;
+    return (int)c - 'A';
 }
 
 void run()
@@ -77,15 +77,26 @@ void run()
     for (auto c : note_string)
         letters[CharToInt(c)]++;
 
-    vector<char> front(h * w);
-    vector<char> back(h * w);
-
+    vector<int> frontCount(26);
+    vector<vector<int>> pair_count(26, vector<int>(26));
+    vector<int> front(h * w);
     for (int i = 0; i < h * w; i++)
-        cin >> front[i];
+    {
+        char c;
+        cin >> c;
+        frontCount[CharToInt(c)]++;
+        front[i] = CharToInt(c);
+    }
 
     for (int i = 0; i < h; i++)
+    {
         for (int j = 0; j < w; j++)
-            cin >> back[i * w + w - 1 - j];
+        {
+            char c;
+            cin >> c;
+            pair_count[front[i * w + w - j - 1]][CharToInt(c)]++;
+        }
+    }
 
     // Create Graph and Maps
     Graph G(26);
@@ -96,34 +107,20 @@ void run()
     ResidualCapacityMap rescapacitymap = boost::get(boost::edge_residual_capacity, G);
     EdgeAdder eag(G, capacitymap, revedgemap);
 
-    // add edge from source to specific letters with the demand of the repspective letter as capacity
+    // add edges
     for (int i = 0; i < 26; i++)
-        eag.addEdge(src, i, letters[i]);
-
-    // for every double sided letter add an edge between these letters to a new helper node and from there to the sink
-    map<pair<char, char>, Edge> combs;
-    for (int i = 0; i < h * w; i++)
     {
-        char first = front[i] < back[i] ? front[i] : back[i];
-        char second = front[i] > back[i] ? front[i] : back[i];
+        // add edge from source to letter with how often it appears on front side as capacity
+        eag.addEdge(src, i, frontCount[i]);
 
-        if (first == second)
+        // add edge from front letter to every back letter with how many times this combination occurs as capacity
+        for (int j = 0; j < 26; j++)
         {
-            eag.addEdge(CharToInt(front[i]), sink, 1);
-            continue;
+            eag.addEdge(i, j, pair_count[i][j]);
         }
 
-        if (combs.find(make_pair(first, second)) != combs.end())
-        {
-            capacitymap[combs[make_pair(first, second)]]++;
-            continue;
-        }
-
-        Vertex helper = boost::add_vertex(G);
-        eag.addEdge(CharToInt(first), helper, INT32_MAX);
-        eag.addEdge(CharToInt(second), helper, INT32_MAX);
-        Edge e = eag.addEdge(helper, sink, 1);
-        combs[make_pair(first, second)] = e;
+        // add edge from every letter to sink with how many of this letter we need as capacity
+        eag.addEdge(i, sink, letters[i]);
     }
 
     // calculate flow

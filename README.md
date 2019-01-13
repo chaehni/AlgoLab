@@ -48,7 +48,7 @@
 | 7         | Diet                            | 100    | linear programming                                                                                          |
 | 7         | Portfolios                      | 100    | quadratic programming, minimize over variance matrix                                                        |
 | 7         | Inball                          | 100    | linear programming, find closest point to every halfspace border and check                                  |
-| PotW 8    | London                          | 100    | max flow, one node for every letter and one node for every front/back letter combination                    |
+| PotW 8    | London                          | 100    | max flow, edges between front/back letter combinations                                                      |
 | 8         | Graypes                         | 100    | delauny triangulation, taking shortest edge                                                                 |
 | 8         | Bistro                          | 100    | voronoi using delauny triangulation                                                                         |
 | 8         | H1N1                            | 100    | delauny/voronoi duality and precomputing largest escape path                                                |
