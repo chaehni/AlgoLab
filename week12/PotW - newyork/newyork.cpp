@@ -19,7 +19,6 @@ void run()
     cin >> n >> m >> k;
 
     vector<Point> points(n);
-    vector<bool> root(n, true);
     vector<bool> starting_point(n, false);
 
     for (int i = 0; i < n; i++)
@@ -32,67 +31,60 @@ void run()
     {
         int u, v;
         cin >> u >> v;
-        root[v] = false;
         points[u].children.push_back(v);
     }
 
     bool possible = false;
-    // for every root node start a DFS
-    for (int i = 0; i < n; i++)
+
+    stack<Point> s;
+    s.push(points[0]);
+    vector<int> indices; // over the full DFS it will contain all the branches of the tree
+    map<int, bool> visited;
+    multiset<int> temp_set; // stores the last m temperatures in ordered fashion so we can compute difference using first and last element
+    int oldest_temp;
+
+    while (!s.empty())
     {
-        if (!root[i])
-            continue;
 
-        stack<Point> s;
-        s.push(points[i]);
-        vector<int> indices; // over the full DFS it will contain all the branches of the tree
-        map<int, bool> visited;
-        multiset<int> temp_set; // stores the last m temperatures in ordered fashion so we can compute difference using first and last element
-        int oldest_temp;
+        Point current = s.top();
 
-        while (!s.empty())
+        // if we've seen this point already it means we have handled all its children -> undo this node
+        if (visited[current.index])
         {
+            s.pop();
+            indices.pop_back();
+            temp_set.erase(temp_set.find(current.temp));
 
-            Point current = s.top();
+            // we removed current temperature, we need to restore the one dropped by current node
+            if (indices.size() >= m)
+                temp_set.insert(points[indices[indices.size() - m]].temp);
 
-            // if we've seen this point already it means we have handled all its children -> undo this node
-            if (visited[current.index])
-            {
-                s.pop();
-                indices.pop_back();
-                temp_set.erase(temp_set.find(current.temp));
-
-                // we removed current temperature, we need to restore the one dropped by current node
-                if (indices.size() >= m)
-                    temp_set.insert(points[indices[indices.size() - m]].temp);
-
-                continue;
-            }
-
-            // this node is new, push its index to the vector and update temps
-            indices.push_back(current.index);
-
-            // if we already have m temperatures, the oldest needs to go
-            if (temp_set.size() == m)
-            {
-                oldest_temp = points[indices[indices.size() - m - 1]].temp;
-                temp_set.erase(temp_set.find(oldest_temp));
-            }
-            // add current temperature
-            temp_set.insert(current.temp);
-
-            //check if we can find a new starting point and then push children
-            if (indices.size() >= m && abs(*temp_set.begin() - *(--temp_set.end())) <= k)
-            {
-                starting_point[indices[indices.size() - m]] = true;
-                possible = true;
-            }
-
-            for (int c : current.children)
-                s.push(points[c]);
-
-            visited[current.index] = true;
+            continue;
         }
+
+        // this node is new, push its index to the vector and update temps
+        indices.push_back(current.index);
+
+        // if we already have m temperatures, the oldest needs to go
+        if (temp_set.size() == m)
+        {
+            oldest_temp = points[indices[indices.size() - m - 1]].temp;
+            temp_set.erase(temp_set.find(oldest_temp));
+        }
+        // add current temperature
+        temp_set.insert(current.temp);
+
+        //check if we can find a new starting point and then push children
+        if (indices.size() >= m && abs(*temp_set.begin() - *(--temp_set.end())) <= k)
+        {
+            starting_point[indices[indices.size() - m]] = true;
+            possible = true;
+        }
+
+        for (int c : current.children)
+            s.push(points[c]);
+
+        visited[current.index] = true;
     }
 
     if (!possible)
