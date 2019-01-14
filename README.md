@@ -75,7 +75,7 @@
 | 12        | Ligh Pattern                    | ---    |                                                                                                                   |
 | 12        | Casino Royale                   | ---    |                                                                                                                   |
 | 12        | Radiation                       | ---    |                                                                                                                   |
-| 12        | Hong Kong                       | ---    |                                                                                                                   |
+| 12        | Hong Kong                       | 100    | delauny/voronoi duality and precomputing max clearance for every triangle (see H1N1)                              |
 | PotW 13   | World Cup                       | ---    |                                                                                                                   |
 | 13        | Bob's Burden                    | ---    |                                                                                                                   |
 | 13        | Corbusier                       | ---    |                                                                                                                   |
