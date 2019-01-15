@@ -61,7 +61,7 @@
 | 9         | Marathon                        | 100    | multiple max flow min cost & binary search to find the optimal flow                                               |
 | PotW 10   | GoldenEye                       | 100    | voronoi (using delauny) & union find                                                                              |
 | 10        | New Tiles                       | ---    |                                                                                                                   |
-| 10        | On Her Majesty's Secret Service | ---    |                                                                                                                   |
+| 10        | On Her Majesty's Secret Service | 100    | minimum bottleneck matching, minimizing longest edge in bipartite graph                                           |
 | 10        | Light the Stage                 | ---    |                                                                                                                   |
 | 10        | Evolution                       | 100    | binary search on each interval found by DFS                                                                       |
 | 10        | Return of the Jedi              | ---    |                                                                                                                   |
