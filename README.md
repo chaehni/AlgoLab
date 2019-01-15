@@ -62,7 +62,7 @@
 | PotW 10   | GoldenEye                       | 100    | voronoi (using delauny) & union find                                                                              |
 | 10        | New Tiles                       | ---    |                                                                                                                   |
 | 10        | On Her Majesty's Secret Service | 100    | minimum bottleneck matching, minimizing longest edge in bipartite graph                                           |
-| 10        | Light the Stage                 | ---    |                                                                                                                   |
+| 10        | Light the Stage                 | 100    | delauny for nearest neighbour & trying out all possible collisions                                                |
 | 10        | Evolution                       | 100    | binary search on each interval found by DFS                                                                       |
 | 10        | Return of the Jedi              | ---    |                                                                                                                   |
 | 10        | Poker Chips                     | ---    |                                                                                                                   |
