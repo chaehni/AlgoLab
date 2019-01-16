@@ -78,7 +78,7 @@
 | 12        | Hong Kong                       | 100    | delauny/voronoi duality and precomputing max clearance for every triangle (see H1N1)                              |
 | PotW 13   | World Cup (mock exam)           | 100    | delauny to find relevant contour lines & LP to maximize profit under constraints                                  |
 | 13        | Bob's Burden                    | ---    |                                                                                                                   |
-| 13        | Corbusier                       | ---    |                                                                                                                   |
+| 13        | Corbusier                       | 100    | simple DP with 2D table                                                                                           |
 | 13        | Cantonal Courier                | ---    |                                                                                                                   |
 | 13        | Clues                           | ---    |                                                                                                                   |
 | 13        | Moving Books                    | ---    |                                                                                                                   |
