@@ -2,80 +2,66 @@
 #include <vector>
 #include <map>
 #include <set>
+#include <queue>
 
+// CGAL includes
 #include <CGAL/Exact_predicates_inexact_constructions_kernel.h>
+#include <CGAL/Triangulation_face_base_with_info_2.h>
 #include <CGAL/Delaunay_triangulation_2.h>
 
 typedef CGAL::Exact_predicates_inexact_constructions_kernel K;
-typedef CGAL::Delaunay_triangulation_2<K> Triangulation;
+typedef CGAL::Triangulation_vertex_base_2<K> Vb;
+typedef CGAL::Triangulation_face_base_with_info_2<K::FT, K> Fb;
+typedef CGAL::Triangulation_data_structure_2<Vb, Fb> Tds;
+typedef CGAL::Delaunay_triangulation_2<K, Tds> Triangulation;
 typedef K::Point_2 Point;
 typedef Triangulation::Face_handle Face;
 
-struct Edge
-{
-    Edge(Face _from, Face _to, K::FT _dist) : from(_from), to(_to), dist(_dist) {}
-    Face from;
-    Face to;
-    K::FT dist;
-
-    bool operator<(const Edge &e) const
-    {
-        return dist > e.dist;
-    }
-};
-
 using namespace std;
 
-map<Face, K::FT> precompute(Triangulation &t)
+void precompute(Triangulation &t)
 {
 
-    // create a multiset that puts longest edges first
-    // because of the "<" operator defined above and because multiple edges can have the same length,
-    // a regular set would not insert all of them
-    multiset<Edge> q;
-    map<Face, K::FT> m;
+    // for every face precompute the maximal distance for which one can still escape
+    // start with biggest values (infinite faces) and update all neighbours until nothing changes anymore
+    priority_queue<pair<K::FT, Face>> q;
 
-    // start from infinite faces and add all edges to non-infinite faces into queue
     for (auto it = t.all_faces_begin(); it != t.all_faces_end(); ++it)
     {
         if (t.is_infinite(it))
         {
-            m[it] = INT64_MAX;
-            for (int i = 0; i < 3; i++)
-            {
-                Face nb = it->neighbor(i);
-                if (!t.is_infinite(nb))
-                {
-                    K::FT dist = t.segment(it, i).squared_length();
-                    q.insert(Edge(it, nb, dist));
-                }
-            }
+            it->info() = INT64_MAX;
+            q.push(make_pair(INT64_MAX, it));
+        }
+        else
+        {
+            it->info() = -1;
+            q.push(make_pair(0, it));
         }
     }
 
-    // deque edges and update face escape values
     while (!q.empty())
     {
-        auto edge = *q.begin();
-        q.erase(q.find(edge)); // erase would delete all edges of same length
-        Face to = edge.to;
-        if (m[to] != 0)
-            continue;
-        K::FT distance = edge.dist;
-        m[to] = min(m[edge.from], distance);
+        Face curr_f = q.top().second;
+        K::FT escape_val = q.top().first;
+        q.pop();
 
-        // add edges of found face to queue
+        if (escape_val < curr_f->info())
+            continue;
+
+        // update all neighbours
         for (int i = 0; i < 3; i++)
         {
-            Face nb = to->neighbor(i);
-            if (m[nb] == 0)
+            Face nb = curr_f->neighbor(i);
+            K::FT edge_length = t.segment(curr_f, i).squared_length();
+            K::FT new_val = min(curr_f->info(), edge_length);
+            if (nb->info() < new_val)
             {
-                K::FT dist = t.segment(to, i).squared_length();
-                q.insert(Edge(to, nb, dist));
+                q.push(make_pair(new_val, nb));
+                nb->info() = new_val;
             }
         }
     }
-    return m;
 }
 
 void run(int n)
@@ -92,15 +78,16 @@ void run(int n)
 
     int m;
     cin >> m;
-    map<Face, K::FT> max_escape = precompute(t);
+    precompute(t);
 
     for (int i = 0; i < m; i++)
     {
         int x, y;
         cin >> x >> y;
         Point start(x, y);
-        long d;
-        cin >> d;
+        long d_in;
+        cin >> d_in;
+        K::FT d = d_in;
 
         Point nearest = t.nearest_vertex(start)->point();
 
@@ -113,8 +100,7 @@ void run(int n)
 
         // find the delauny face which `start` lies in
         Face fh = t.locate(start);
-
-        if (4 * d <= max_escape[fh])
+        if (4 * d <= fh->info())
             cout << "y";
         else
             cout << "n";
