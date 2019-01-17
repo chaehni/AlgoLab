@@ -77,7 +77,7 @@
 | 12        | Radiation                       | ---    |                                                                                                                   |
 | 12        | Hong Kong                       | 100    | delauny/voronoi duality and precomputing max clearance for every triangle (see H1N1)                              |
 | PotW 13   | World Cup (mock exam)           | 100    | delauny to find relevant contour lines & LP to maximize profit under constraints                                  |
-| 13        | Bob's Burden                    | ---    |                                                                                                                   |
+| 13        | Bob's Burden                    | 100    | Dijkstra for finding shortest path between 3 vertices & modelling node weight with in- and out-nodes              |
 | 13        | Corbusier                       | 100    | simple DP with 2D table                                                                                           |
 | 13        | Cantonal Courier                | ---    |                                                                                                                   |
 | 13        | Clues                           | ---    |                                                                                                                   |
