@@ -81,5 +81,5 @@
 | 13        | Corbusier                       | 100    | simple DP with 2D table                                                                                           |
 | 13        | Cantonal Courier                | ---    |                                                                                                                   |
 | 13        | Clues                           | ---    |                                                                                                                   |
-| 13        | Moving Books                    | ---    |                                                                                                                   |
+| 13        | Moving Books                    | 100    | greedy, in every round everyone picks the heaviest box he can                                                     |
 | PotW 14   | Fleetrace                       | ---    |                                                                                                                   |
