@@ -67,12 +67,10 @@ void run()
     EdgeAdder eag(G, capacitymap, revedgemap);
 
     // add edges between source and zones with zone cost as weight
-    vector<int> costs(z);
     for (int i = 0; i < z; i++)
     {
         int c;
         cin >> c;
-        costs[i] = c;
         eag.addEdge(src, i, c);
     }
 
@@ -86,7 +84,7 @@ void run()
         eag.addEdge(z + i, sink, r);
     }
 
-    // add edges between zones and jobs with zone cost as weight
+    // add edges between zones and jobs with infinity as weight
     for (int i = 0; i < j; i++)
     {
         int zones;
@@ -95,10 +93,17 @@ void run()
         {
             int zone;
             cin >> zone;
-            eag.addEdge(zone, z + i, costs[zone]);
+            eag.addEdge(zone, z + i, INT32_MAX);
         }
     }
 
+    // The flow size is the amount of money we have to spend on tickets for an optimal subset of jobs.
+    // We "invest" money into zones by sending their cost from source to the corresponding zone vertex. Then we distribute
+    // the cost over all jobs that need this zone, but we don't want to pay more than the combined reward of these jobs.
+    // Therefore, the jobs are connected to the sink with their reward as capacity. This way, the flow for a subset of zones is
+    // <= the rewards we get for the corresponding jobs. In the end we subtract the flow from the total reward which means that for
+    // zones were the flow was equal to the job rewards we subtract the full job reward (i.e. not doing this job). Else we only subtract
+    // the cost for the tickets from the rewards (i.e. doing this job). In the end, the total rewards - flow = profit
     long flow = boost::push_relabel_max_flow(G, src, sink);
 
     cout << reward - flow << "\n";
