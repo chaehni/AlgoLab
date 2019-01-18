@@ -71,8 +71,10 @@ bool color_graph(Triangulation &t, K::FT rr)
         }
     }
 
-    // So far the spanning tree is colorable but this doesn't mean the original graph is
-    // check that shortes distance between two red points is more than rr, same for blue points
+    // So far the spanning tree is colorable but this doesn't mean the original, full conflict graph is colorable since we
+    // didn't use all the edges from the full conflict graph
+    // check that shortes distance between two red points is more than rr, same for blue points by computing two additional triangulations
+    // for the two colors
     Triangulation t_red, t_blue;
     vector<Point> rPoints;
     vector<Point> bPoints;
