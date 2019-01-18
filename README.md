@@ -80,6 +80,6 @@
 | 13        | Bob's Burden                    | 100    | Dijkstra for finding shortest path between 3 vertices & modelling node weight with in- and out-nodes              |
 | 13        | Corbusier                       | 100    | simple DP with 2D table                                                                                           |
 | 13        | Cantonal Courier                | 100    | max flow                                                                                                          |
-| 13        | Clues                           | ---    |                                                                                                                   |
+| 13        | Clues                           | 100    | computing graph 2-coloring and connected components simultaneously using delauny triangulation                    |
 | 13        | Moving Books                    | 100    | greedy, in every round everyone picks the heaviest box he can                                                     |
 | PotW 14   | Fleetrace                       | ---    |                                                                                                                   |
