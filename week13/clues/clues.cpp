@@ -71,10 +71,6 @@ bool color_graph(Triangulation &t, K::FT rr)
         }
     }
 
-    for (auto it = t.finite_vertices_begin(); it != t.finite_vertices_end(); it++)
-        if (it->info().second == none)
-            cerr << "FATAL" << endl;
-
     // So far the spanning tree is colorable but this doesn't mean the original graph is
     // check that shortes distance between two red points is more than rr, same for blue points
     Triangulation t_red, t_blue;
@@ -149,8 +145,9 @@ void run()
         // are their two closest senders in the same component and within reach?
         Vertex vh = t.nearest_vertex(holmes);
         Vertex vw = t.nearest_vertex(watson);
-        if (vh->info().first == vw->info().first && CGAL::squared_distance(vh->point(), holmes) <= radius *radius &&
-            CGAL::squared_distance(vw->point(), watson) <= radius *radius)
+        if (vh->info().first == vw->info().first &&
+            CGAL::squared_distance(vh->point(), holmes) <= radius * radius &&
+            CGAL::squared_distance(vw->point(), watson) <= radius * radius)
             cout << "y";
         else
             cout << "n";
