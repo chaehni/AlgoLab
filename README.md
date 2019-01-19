@@ -64,7 +64,7 @@
 | 10        | On Her Majesty's Secret Service | 100    | minimum bottleneck matching, minimizing longest edge in bipartite graph                                           |
 | 10        | Light the Stage                 | 100    | delauny for nearest neighbour & trying out all possible collisions                                                |
 | 10        | Evolution                       | 100    | binary search on each interval found by DFS                                                                       |
-| 10        | Return of the Jedi              | ---    |                                                                                                                   |
+| 10        | Return of the Jedi              | 100    | finding 2nd most optimal spanning tree using Prim & DFS                                                           |
 | 10        | Poker Chips                     | 100    | recursion with insane 5D memoization table                                                                        |
 | PotW 11   | India                           | 100    | min cost max flow, binary search on number of suitcases to find maximum that still respects budget (see Marathon) |
 | 11        | The Empire Strikes Back         | ---    |                                                                                                                   |
