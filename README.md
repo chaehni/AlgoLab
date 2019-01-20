@@ -69,7 +69,7 @@
 | PotW 11   | India                           | 100    | min cost max flow, binary search on number of suitcases to find maximum that still respects budget (see Marathon) |
 | 11        | The Empire Strikes Back         | 100    | Delauny for finding max radius per shot, then LP for solving for required energy                                  |
 | 11        | Planks                          | ---    |                                                                                                                   |
-| 11        | Carsharing                      | ---    |                                                                                                                   |
+| 11        | Carsharing                      | 100    | min cost max flow with a space-time graph and clever edge weights                                                 |
 | 11        | San Francisco                   | ---    |                                                                                                                   |
 | PotW 12   | New York                        | 100    | DFS over all trees, for every node discovered update node m hops above                                            |
 | 12        | Ligh Pattern                    | ---    |                                                                                                                   |
