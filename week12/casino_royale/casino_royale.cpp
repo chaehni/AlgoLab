@@ -79,9 +79,6 @@ void run()
     for (int i = 0; i < n - 1; i++)
         eag.addEdge(i, i + 1, l, max_p);
 
-    /*  vector<int> entering(n, 0);
-    vector<int> leaving(n, 0); */
-
     // add edges for missions
     for (int i = 0; i < m; i++)
     {
