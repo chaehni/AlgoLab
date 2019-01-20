@@ -73,7 +73,7 @@
 | 11        | San Francisco                   | ---    |                                                                                                                   |
 | PotW 12   | New York                        | 100    | DFS over all trees, for every node discovered update node m hops above                                            |
 | 12        | Ligh Pattern                    | ---    |                                                                                                                   |
-| 12        | Casino Royale                   | ---    |                                                                                                                   |
+| 12        | Casino Royale                   | 100    | min cost max flow, space-time graph (see Carsharing)                                                              |
 | 12        | Radiation                       | ---    |                                                                                                                   |
 | 12        | Hong Kong                       | 100    | Delauny/voronoi duality and precomputing max clearance for every triangle (see H1N1)                              |
 | PotW 13   | World Cup (mock exam)           | 100    | Delauny to find relevant contour lines & LP to maximize profit under constraints                                  |
