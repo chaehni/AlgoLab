@@ -66,7 +66,7 @@ void run()
     }
 
     // we can use at most 30 degrees, try to find a solution with degrees 0 to 30
-    for (int d = 0; d <= 30; d++)
+    for (int d = 0; d <= 30; d++) // could be speed up by about 1s using binary search
     {
         bool solvable = try_solve(d, H, T, cells);
 
