@@ -74,7 +74,7 @@
 | PotW 12   | New York                        | 100    | DFS over all trees, for every node discovered update node m hops above                                            |
 | 12        | Ligh Pattern                    | ---    |                                                                                                                   |
 | 12        | Casino Royale                   | 100    | min cost max flow, space-time graph (see Carsharing)                                                              |
-| 12        | Radiation                       | ---    |                                                                                                                   |
+| 12        | Radiation                       | 100    | LP, for every d try to find coefficiants for a 3D-polynomial of degree d that solves the constraints              |
 | 12        | Hong Kong                       | 100    | Delauny/voronoi duality and precomputing max clearance for every triangle (see H1N1)                              |
 | PotW 13   | World Cup (mock exam)           | 100    | Delauny to find relevant contour lines & LP to maximize profit under constraints                                  |
 | 13        | Bob's Burden                    | 100    | Dijkstra for finding shortest path between 3 vertices & modelling node weight with in- and out-nodes              |

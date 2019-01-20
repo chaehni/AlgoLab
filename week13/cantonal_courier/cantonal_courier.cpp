@@ -97,12 +97,11 @@ void run()
         }
     }
 
-    // The flow size is the amount of money we have to spend on tickets for an optimal subset of jobs.
     // We "invest" money into zones by sending their cost from source to the corresponding zone vertex. Then we distribute
     // the cost over all jobs that need this zone, but we don't want to pay more than the combined reward of these jobs.
     // Therefore, the jobs are connected to the sink with their reward as capacity. This way, the flow for a subset of zones is
     // <= the rewards we get for the corresponding jobs. In the end we subtract the flow from the total reward which means that for
-    // zones were the flow was equal to the job rewards we subtract the full job reward (i.e. not doing this job). Else we only subtract
+    // zones were the flow was equal to the job rewards we subtract the full job reward (i.e. not doing this job). Else, we only subtract
     // the cost for the tickets from the rewards (i.e. doing this job). In the end, the total rewards - flow = profit
     long flow = boost::push_relabel_max_flow(G, src, sink);
 
