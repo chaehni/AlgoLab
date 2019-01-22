@@ -82,4 +82,4 @@
 | 13        | Cantonal Courier                | 100    | max flow                                                                                                          |
 | 13        | Clues                           | 100    | computing graph 2-coloring and connected components simultaneously using Delauny triangulation                    |
 | 13        | Moving Books                    | 100    | greedy, in every round everyone picks the heaviest box he can                                                     |
-| PotW 14   | Fleetrace                       | ---    |                                                                                                                   |
+| PotW 14   | Fleetrace                       | 100    | minimum cost bipartite matching                                                                                   |
