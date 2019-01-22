@@ -70,7 +70,7 @@
 | 11        | The Empire Strikes Back         | 100    | Delauny for finding max radius per shot, then LP for solving for required energy                                  |
 | 11        | Planks                          | 100    | Split & List with to bits per plank                                                                               |
 | 11        | Carsharing                      | 100    | min cost max flow with a space-time graph and clever edge weights                                                 |
-| 11        | San Francisco                   | ---    |                                                                                                                   |
+| 11        | San Francisco                   | 100    | binary search over recursive function to find smallest k to achieve x points                                      |
 | PotW 12   | New York                        | 100    | DFS over all trees, for every node discovered update node m hops above                                            |
 | 12        | Ligh Pattern                    | 100    | DP with linear table and two numbers per entry for normal and inverted lights                                     |
 | 12        | Casino Royale                   | 100    | min cost max flow, space-time graph (see Carsharing)                                                              |

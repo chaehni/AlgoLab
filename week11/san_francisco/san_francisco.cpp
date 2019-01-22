@@ -1,116 +1,73 @@
-// STL includes
 #include <iostream>
-#include <cstdlib>
-// BGL includes
-#include <boost/graph/adjacency_list.hpp>
-#include <boost/graph/cycle_canceling.hpp>
-#include <boost/graph/push_relabel_max_flow.hpp>
-#include <boost/graph/successive_shortest_path_nonnegative_weights.hpp>
-#include <boost/graph/find_flow_cost.hpp>
-
-// BGL Graph definitions
-// =====================
-// Graph Type with nested interior edge properties for Cost Flow Algorithms
-typedef boost::adjacency_list_traits<boost::vecS, boost::vecS, boost::directedS> Traits;
-typedef boost::adjacency_list<boost::vecS, boost::vecS, boost::directedS, boost::no_property,
-                              boost::property<boost::edge_capacity_t, long,
-                                              boost::property<boost::edge_residual_capacity_t, long,
-                                                              boost::property<boost::edge_reverse_t, Traits::edge_descriptor,
-                                                                              boost::property<boost::edge_weight_t, long>>>>>
-    Graph; // new!
-// Interior Property Maps
-typedef boost::property_map<Graph, boost::edge_capacity_t>::type EdgeCapacityMap;
-typedef boost::property_map<Graph, boost::edge_weight_t>::type EdgeWeightMap; // new!
-typedef boost::property_map<Graph, boost::edge_residual_capacity_t>::type ResidualCapacityMap;
-typedef boost::property_map<Graph, boost::edge_reverse_t>::type ReverseEdgeMap;
-typedef boost::graph_traits<Graph>::vertex_descriptor Vertex;
-typedef boost::graph_traits<Graph>::edge_descriptor Edge;
-typedef boost::graph_traits<Graph>::out_edge_iterator OutEdgeIt; // Iterator
-
-// Custom Edge Adder Class, that holds the references
-// to the graph, capacity map, weight map and reverse edge map
-// ===============================================================
-class EdgeAdder
-{
-    Graph &G;
-    EdgeCapacityMap &capacitymap;
-    EdgeWeightMap &weightmap;
-    ReverseEdgeMap &revedgemap;
-
-  public:
-    EdgeAdder(Graph &G, EdgeCapacityMap &capacitymap, EdgeWeightMap &weightmap, ReverseEdgeMap &revedgemap)
-        : G(G), capacitymap(capacitymap), weightmap(weightmap), revedgemap(revedgemap) {}
-
-    void addEdge(int u, int v, long c, long w)
-    {
-        Edge e, rev_e;
-        boost::tie(e, boost::tuples::ignore) = boost::add_edge(u, v, G);
-        boost::tie(rev_e, boost::tuples::ignore) = boost::add_edge(v, u, G);
-        capacitymap[e] = c;
-        weightmap[e] = w; // new!
-        capacitymap[rev_e] = 0;
-        weightmap[rev_e] = -w; // new
-        revedgemap[e] = rev_e;
-        revedgemap[rev_e] = e;
-    }
-};
+#include <vector>
+#include <map>
+#include <cassert>
 
 using namespace std;
 
+long max_score(vector<vector<pair<int, int>>> &canals, int pos, long moves, vector<vector<long>> &memo)
+{
+    // if we have no moves left
+    if (moves == 0)
+        return 0;
+
+    if (memo[pos][moves] != -1)
+        return memo[pos][moves];
+
+    // if we are at a leaf, go back to 0
+    if (canals[pos].size() == 0)
+        return max_score(canals, 0, moves, memo);
+
+    // for every canal, take it and record max score
+    long best = 0;
+    for (auto c : canals[pos])
+        best = max(best, c.second + max_score(canals, c.first, moves - 1, memo));
+
+    memo[pos][moves] = best;
+    return best;
+}
+
 void run()
 {
-    int n, m, x, k;
-    cin >> n >> m >> x >> k;
+    int N, M, K;
+    long X;
+    cin >> N >> M >> X >> K;
 
-    // Create Graph and Maps
-    Graph G(n + 2);
-    Vertex src = n;
-    Vertex sink = n + 1;
-    EdgeCapacityMap capacitymap = boost::get(boost::edge_capacity, G);
-    EdgeWeightMap weightmap = boost::get(boost::edge_weight, G);
-    ReverseEdgeMap revedgemap = boost::get(boost::edge_reverse, G);
-    ResidualCapacityMap rescapacitymap = boost::get(boost::edge_residual_capacity, G);
-    EdgeAdder eag(G, capacitymap, weightmap, revedgemap);
-
-    vector<int> outgoing(n, 0);
-
-    for (int i = 0; i < m; i++)
+    // for each hole keep a list of all the canals usable from there: pair (dest, points)
+    vector<vector<pair<int, int>>> canals(N);
+    map<pair<int, int>, int> canal_map;
+    for (int i = 0; i < M; i++)
     {
-        int u, v;
-        int p;
+        int u, v, p;
         cin >> u >> v >> p;
-        eag.addEdge(u, v, 1, -p);
-        outgoing[u]++;
+        canals[u].push_back({v, p});
     }
 
-    // connect source node
-    eag.addEdge(src, 0, 1, 0);
+    vector<vector<long>> memo(N, vector<long>(K + 1, -1)); // maps position p and moves m to the max amount of points one can score with m moves from point p
+    assert(K > 0);
 
-    // add edge for every node that has no outgoing edge to sink
-    for (int i = 0; i < n; i++)
+    long m = max_score(canals, 0, K, memo);
+
+    if (m < X)
     {
-        if (outgoing[i] == 0)
-        {
-            eag.addEdge(i, sink, 1, 0);
-        }
+        cout << "Impossible\n";
+        return;
     }
 
-    // send one unit through network
-    // boost::successive_shortest_path_nonnegative_weights(G, src, sink);
-    long flow = boost::push_relabel_max_flow(G, src, sink);
-    boost::cycle_canceling(G);
-    int cost_slow = boost::find_flow_cost(G);
-    //long cost = boost::find_flow_cost(G);
+    // use binary search to find smallest number of moves, such that score is >= X
+    int l = 1;
+    int r = K;
 
-    //long points = INT32_MAX * k - cost;
-    long points = -cost_slow;
+    while (l != r)
+    {
+        int m = (l + r) / 2;
+        if (max_score(canals, 0, m, memo) < X)
+            l = m + 1;
+        else
+            r = m;
+    }
 
-    cout << points << endl;
-    if (points < x)
-        cout << "possible";
-    else
-        cout << "impossible";
-    cout << "\n";
+    cout << l << "\n";
 }
 
 int main()
