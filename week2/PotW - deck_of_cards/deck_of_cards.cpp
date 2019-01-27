@@ -6,46 +6,50 @@ using namespace std;
 
 void sum()
 {
-    int n; cin >> n;
-    int k; cin >> k;
+    int n, k;
+    cin >> n >> k;
 
-    vector<int> cards;
     vector<int> partial;
     int sum = 0;
-    for (int i = 0; i < n; i++){
+    for (int i = 0; i < n; i++)
+    {
         int temp;
         cin >> temp;
-        partial.push_back(sum+=temp);
+        partial.push_back(sum += temp);
     }
 
     int score = INT_MAX;
-    int res_i;
+    int res_i = 0;
     int res_j;
     int i = 0;
     int j = 0;
-    int temp;
 
-    while (j < n){
+    while (j < n)
+    {
+        int temp = (i == 0 ? partial[j] : (partial[j] - partial[i - 1]));
 
-        temp = partial[j] - partial[i-1];
-        temp = (i == 0 ? partial[j] : (partial[j] - partial[i-1]));
+        if (abs(temp - k) < score)
+        {
+            score = abs(temp - k);
+            res_i = i;
+            res_j = j;
+        }
 
-        if (abs(temp-k) < score){
-                score = abs(temp-k);
-                res_i = i;
-                res_j = j;
-            }
-
-        if (temp == k) {
+        if (temp == k)
             break;
-        } else if (temp < k) {
+
+        if (temp < k)
+        {
             j++;
-        } else if (temp > k) {
-            if (i < j) {
+            continue;
+        }
+
+        if (temp > k)
+        {
+            if (i < j)
                 i++;
-            } else {
+            else
                 j++;
-            }
         }
     }
 
@@ -53,7 +57,7 @@ void sum()
 }
 
 int main()
-{   
+{
     std::ios_base::sync_with_stdio(false);
     int n_tests;
     cin >> n_tests;
