@@ -61,8 +61,6 @@ void run()
 {
     int n, m, s;
     cin >> n >> m >> s;
-    vector<int> max(s);
-    vector<int> in_state(m);
 
     // Create Graph and Maps
     Graph G(n + m + s + 2);
