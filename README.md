@@ -18,10 +18,10 @@
 | 1         | Even Matrices                   | 100    | dimension reduction & partial sums                                                                                |
 | PotW 2    | Deck of Cards                   | 100    | sliding window                                                                                                    |
 | 2         | Beach Bars                      | 100    | partial sums, sliding window                                                                                      |
-| 2         | Burning Coins                   | 100    | DP, 2 tables                                                                       |
+| 2         | Burning Coins                   | 100    | DP, 2 tables                                                                                                      |
 | 2         | Search Snippets                 | 100    | ordering words by occurences, sliding window                                                                      |
-| 2         | The Great Game                  | 100    |recursion & memoization, 2 tables                                                                        |
-| PotW 3    | Magician and the Coin           | 100    | recursion & memoization                                                                                  |
+| 2         | The Great Game                  | 100    | recursion & memoization, 2 tables                                                                                 |
+| PotW 3    | Magician and the Coin           | 100    | recursion & memoization                                                                                           |
 | 3         | Hit                             | 100    | intersection                                                                                                      |
 | 3         | First hit                       | 100    | intersection, shuffle input and clip ray to avoid costly intersections                                            |
 | 3         | Antenna                         | 100    | Min_circle                                                                                                        |
@@ -30,12 +30,12 @@
 | 4         | Ant Challenge                   | 100    | Kruskal per species, then Dijkstra                                                                                |
 | 4         | Buddy Selection                 | 100    | perfect matching                                                                                                  |
 | 4         | Building a Graph                | 100    | Kurskal, Dijkstra                                                                                                 |
-| 4         | Important Bridges BGL           | 100    | biconnected components                                                                                                 |
+| 4         | Important Bridges BGL           | 100    | biconnected components                                                                                            |
 | 4         | Shortest Paths                  | 100    | Dijkstra                                                                                                          |
 | PotW 5    | Hiking Maps                     | 100    | inclusion test & sliding window                                                                                   |
-| 5         | Boats                           | 100    | greedy, version of earliest deadline first                                                                           |
+| 5         | Boats                           | 100    | greedy, version of earliest deadline first                                                                        |
 | 5         | Attack of the Clones            | 100    | greedy, eraliest deadline first in a circle                                                                       |
-| 5         | Ligth at the Museum             | 100    | brute force all switch configurations using split & list                                                          |
+| 5         | Ligth at the Museum             | 100    | split & list, brute force all switch configurations                                                               |
 | 5         | Punch                           | 100    | dynamic programming, 2D table for beverages x liters                                                              |
 | 5         | High School Teams               | 100    | split & list, brute force all combinations with at most k refs, for those brute force all team combinations       |
 | PotW 6    | Planet Express                  | 100    | strong components & Dijkstra                                                                                      |

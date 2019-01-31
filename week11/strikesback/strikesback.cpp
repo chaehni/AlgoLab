@@ -61,7 +61,7 @@ void run()
         hunter[i] = Point(x, y);
     }
 
-    // create triangulation from bounty hunters, this let's us find the closest hunter for every position
+    // create triangulation from bounty hunters, this lets us find the closest hunter for every position
     // this way we can make sure to not get discovered
     Triangulation t;
     t.insert(hunter.begin(), hunter.end());

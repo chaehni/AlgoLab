@@ -14,7 +14,7 @@ using namespace std;
 void compute_pws(int n, vector<ET> &pw)
 {
     pw[0] = 1;
-    pw[1] = ET(n);
+    pw[1] = n;
     for (int p = 2; p < 31; ++p)
         pw[p] = pw[p - 1] * pw[1];
 }
@@ -59,7 +59,7 @@ void run()
     {
         int x, y, z;
         cin >> x >> y >> z;
-        cells[i] = {vector<vector<ET>>(3, vector<ET>(31))};
+        cells[i] = vector<vector<ET>>(3, vector<ET>(31));
         compute_pws(x, cells[i][0]);
         compute_pws(y, cells[i][1]);
         compute_pws(z, cells[i][2]);
