@@ -1,4 +1,4 @@
-# My solutions to the problems of the Algorithms Lab of ETH Zurich in Fall 2018
+# My solutions to the problems of the Algorithms Lab of ETH Zurich in Fall 2018 and 2019
 
 | Week      | Problem                         | Points | Solution                                                                                                          |
 | --------- | ------------------------------- | ------ | ----------------------------------------------------------------------------------------------------------------- |
