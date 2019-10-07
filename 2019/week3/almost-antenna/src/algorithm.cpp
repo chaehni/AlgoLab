@@ -32,9 +32,23 @@ void run(int n)
         points[i] = P(x, y);
     }
 
-    Min_circle min(points.begin(), points.end(), true);
+    Min_circle minc(points.begin(), points.end(), true);
+    K::FT smallest = minc.circle().squared_radius();
 
-    cout << ceil_to_double(CGAL::sqrt(min.circle().squared_radius())) << endl;
+    // iterate over boundary points and remove each and recalculate min circle
+    for (auto sp = minc.support_points_begin(); sp != minc.support_points_end(); sp++)
+    {
+        vector<P> temp;
+        for (int i = 0; i < n; i++)
+        {
+            if (points[i] != *sp)
+                temp.push_back(points[i]);
+        }
+        Min_circle min_approx(temp.begin(), temp.end(), true);
+        smallest = min(smallest, min_approx.circle().squared_radius());
+    }
+
+    cout << ceil_to_double(CGAL::sqrt(smallest)) << endl;
 }
 
 int main(int argc, char const *argv[])
