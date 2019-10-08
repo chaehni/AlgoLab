@@ -7,55 +7,93 @@
 
 using namespace std;
 
-pair<int, int> recurse(vector<vector<int>> &trans, vector<int> &cost, vector<int> &memo, int pos)
+int recurse(vector<vector<int>> &trans, vector<int> &cost, vector<int> &memo, int pos)
 {
+
+    if (memo[pos] != -1)
+        return memo[pos];
+
+    // cout << "entering with pos: " << pos << endl;
     // if endpoint, return cost for that city
     if (trans[pos].size() == 0)
-        return make_pair(cost[pos], 0);
+        return 0;
 
     // case 1: taking root
     int sumRoot = cost[pos];
     for (int child : trans[pos])
     {
-        auto p = recurse(trans, cost, memo, child);
-        sumRoot += min(p.first, p.second);
+        sumRoot += recurse(trans, cost, memo, child);
     }
 
     // case 2: not taking root
     int sumNotRoot = INT32_MAX;
     for (int child : trans[pos])
     {
-        // take this child
-        auto p = recurse(trans, cost, memo, child);
-        int c = p.first;
-        // cout << "in: child cost is " << c << endl;
-        // recurse on grand-children
-        /* for (int grand_child : trans[child])
+        int c = cost[child];
+        for (int grand_child : trans[child])
         {
-            auto p = recurse(trans, cost, memo, grand_child);
             if (trans[grand_child].size() == 0)
-                c += p.first;
+                c += cost[grand_child];
             else
-                c += min(p.first, p.second);
-        } */
+                c += recurse(trans, cost, memo, grand_child);
+        }
 
-        // recurse on all siblings
         for (int sibling : trans[pos])
         {
             if (sibling != child)
             {
-                auto p = recurse(trans, cost, memo, sibling);
                 if (trans[sibling].size() == 0)
-                    c += p.first;
+                    c += cost[sibling];
                 else
-                    c += min(p.first, p.second);
+                    c += recurse(trans, cost, memo, sibling);
             }
         }
         sumNotRoot = min(sumNotRoot, c);
     }
 
-    cout << "returnigng for node " << pos << ": " << sumRoot << " " << sumNotRoot << endl;
-    return make_pair(sumRoot, sumNotRoot);
+    // case 2: not taking root
+    int sumNotChild = INT32_MAX;
+    for (int child : trans[pos])
+    {
+        for (int grand_child : trans[child])
+        {
+            int c = cost[grand_child];
+            for (int grand_grand_child : trans[grand_child])
+            {
+                if (trans[grand_grand_child].size() == 0)
+                    c += cost[grand_grand_child];
+                else
+                    c += recurse(trans, cost, memo, grand_grand_child);
+            }
+
+            for (int grand_sibling : trans[child])
+            {
+                if (grand_sibling != grand_child)
+                {
+                    if (trans[grand_sibling].size() == 0)
+                        c += cost[grand_sibling];
+                    else
+                        c += recurse(trans, cost, memo, grand_sibling);
+                }
+            }
+
+            for (int child2 : trans[pos])
+            {
+                if (child2 != child)
+                {
+                    if (trans[child2].size() == 0)
+                        c += cost[child2];
+                    else
+                        c += recurse(trans, cost, memo, child2);
+                }
+            }
+            sumNotChild = min(sumNotChild, c);
+        }
+    }
+
+    //  cout << "returnigng for node " << pos << ": " << sumRoot << " " << sumNotRoot << endl;
+    memo[pos] = min(sumNotChild, min(sumRoot, sumNotRoot));
+    return min(sumNotChild, min(sumRoot, sumNotRoot));
 }
 
 void run()
@@ -77,8 +115,7 @@ void run()
 
     vector<int> memo(n, -1);
 
-    auto p = recurse(trans, cost, memo, 0);
-    cout << p.first << " " << p.second << endl;
+    cout << recurse(trans, cost, memo, 0) << endl;
 }
 
 int main(int argc, char const *argv[])
