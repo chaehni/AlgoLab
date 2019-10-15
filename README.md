@@ -33,7 +33,8 @@
 | 4             | Building a Graph                | 100    | Kurskal, Dijkstra                                                                                                 |
 | 4             | Important Bridges BGL           | 100    | biconnected components                                                                                            |
 | 4             | Shortest Paths                  | 100    | Dijkstra                                                                                                          |
-| PotW 5        | Hiking Maps                     | 100    | inclusion test & sliding window                                                                                   |
+| PotW 5 (2018) | Hiking Maps                     | 100    | inclusion test & sliding window                                                                                   |
+| PotW 5 (2019) | Motorcycles                     | 100    | sorting by increasing slope and then linear pass to test for intersections                                        |
 | 5             | Boats                           | 100    | greedy, version of earliest deadline first                                                                        |
 | 5             | Attack of the Clones            | 100    | greedy, eraliest deadline first in a circle                                                                       |
 | 5             | Ligth at the Museum             | 100    | split & list, brute force all switch configurations                                                               |
