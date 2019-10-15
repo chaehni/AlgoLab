@@ -27,7 +27,8 @@
 | 3             | First hit                       | 100    | intersection, shuffle input and clip ray to avoid costly intersections                                            |
 | 3             | Antenna                         | 100    | Min_circle                                                                                                        |
 | 3             | Almost antenna                  | 100    | Min_circle, support points                                                                                        |
-| PotW 4        | Defensive Line                  | 100    | sliding window & DP                                                                                               |
+| PotW 4 (2018) | Defensive Line                  | 100    | sliding window & DP                                                                                               |
+| PotW 4 (2019) | Chariot Race                    | 100    | recursion and memoization, passing information if current node is covered by parent                               |
 | 4             | Ant Challenge                   | 100    | Kruskal per species, then Dijkstra                                                                                |
 | 4             | Buddy Selection                 | 100    | perfect matching                                                                                                  |
 | 4             | Building a Graph                | 100    | Kurskal, Dijkstra                                                                                                 |
