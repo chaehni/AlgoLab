@@ -14,24 +14,16 @@ int play(vector<int> &coins, vector<vector<int>> &memo, int l, int r, int player
     if (player == k) // player can get a coin
     {
         if (l == r)
-        {
             ret = coins[l];
-        }
         else
-        {
             ret = max(coins[l] + play(coins, memo, l + 1, r, (player + 1) % m, k, m), coins[r] + play(coins, memo, l, r - 1, (player + 1) % m, k, m));
-        }
     }
     else // player doesn't get a coin
     {
         if (l == r)
-        {
             ret = 0;
-        }
         else
-        {
             ret = min(play(coins, memo, l + 1, r, (player + 1) % m, k, m), play(coins, memo, l, r - 1, (player + 1) % m, k, m));
-        }
     }
     memo[l][r] = ret;
     return ret;
