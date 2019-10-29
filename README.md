@@ -37,16 +37,17 @@
 | PotW 5 (2018)        | Hiking Maps                     | 100    | inclusion test & sliding window                                                                                   |
 | PotW 5 (2019)        | Motorcycles                     | 100    | sorting by increasing slope and then linear pass to test for intersections                                        |
 | 5                    | Boats                           | 100    | greedy, version of earliest deadline first                                                                        |
-| 5                    | Attack of the Clones            | 100    | greedy, eraliest deadline first in a circle                                                                       |
+| 5                    | Attack of the Clones            | 100    | greedy, earliest deadline first in a circle                                                                       |
 | 5                    | Ligth at the Museum             | 100    | split & list, brute force all switch configurations                                                               |
 | 5                    | Punch                           | 100    | dynamic programming, 2D table for beverages x liters                                                              |
 | 5                    | High School Teams               | 100    | split & list, brute force all combinations with at most k refs, for those brute force all team combinations       |
 | PotW 6 (2018 & 2019) | Planet Express                  | 100    | strong components & Dijkstra                                                                                      |
+| PotW 6 (2019)        | Attack of the Clones            | 100    | greedy, earliest deadline first in a circle                                                                       |
 | 6                    | Coin Tossing                    | 100    | max flow, making sure claimed scores and flow match number of games                                               |
 | 6                    | Shopping Trip                   | 100    | max flow, adding edges between junctions in both directions                                                       |
 | 6                    | Kingdom Defence                 | 100    | max flow with edge demand (min capacity)                                                                          |
 | 6                    | Tetris                          | 100    | max flow with splitting nodes into in- and out-nodes (vertex capacity)                                            |
-| PotW 7               | Octopussy                       | 100    | greedy with recursive dependency resolution                                                                       |
+| PotW 7 (2018)        | Octopussy                       | 100    | greedy with recursive dependency resolution                                                                       |
 | 7                    | What is the Maximum             | 100    | quadratic programming                                                                                             |
 | 7                    | Diet                            | 100    | linear programming                                                                                                |
 | 7                    | Portfolios                      | 100    | quadratic programming, minimize over variance matrix                                                              |
