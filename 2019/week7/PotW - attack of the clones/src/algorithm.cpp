@@ -8,26 +8,19 @@ using namespace std;
 // runs EDF in the interval [start, end]
 int EDF(vector<pair<int, int>> &jedis, int start, int end)
 {
-    //  cout << "start: " << start << " end: " << end << endl;
     int cnt = 0;
     int curr_end = start - 1;
     for (auto jedi : jedis)
     {
-        //if ((start <= end && jedi.second >= end)|| (start < end && ))
         if (jedi.second > end)
-        {
-            //  cout << jedi.second << " > " << end << endl;
             break;
-        }
 
         if (jedi.first > curr_end)
         {
-            //cout << "first: " << jedi.first << " curr end " << curr_end << endl;
             cnt++;
             curr_end = jedi.second;
         }
     }
-    // cout << "cnt is: " << cnt << endl;
     return cnt;
 }
 
@@ -57,7 +50,7 @@ void run()
     int min_jedis = INT32_MAX;
     int curr_jedis = 0;
     int best_sector = 0;
-    for (auto it = cnt.begin(); it != prev(cnt.end(), 1); it++)
+    for (auto it = cnt.begin(); it != cnt.end() && it->first < m; it++) // we could have an entry for n (see above), so iterate until end or until n-1
     {
         curr_jedis += it->second;
         if (curr_jedis < min_jedis)
@@ -66,7 +59,6 @@ void run()
             best_sector = it->first;
         }
     }
-    //cout << "smallest == " << min_jedis << " in sector: " << best_sector << endl;
 
     // we now have a sector with at most 10 overlaps
     // find the jedis that overlap that segment and the ones that don't
@@ -74,9 +66,6 @@ void run()
     vector<pair<int, int>> no_overlap;
     for (auto jedi : jedis)
     {
-
-        //  cout << jedi.first << " - " << jedi.second << ", ";
-
         int s = jedi.first;
         int e = jedi.second;
         int c = best_sector;
@@ -84,30 +73,23 @@ void run()
         int s_new = (s >= c ? s - c : s - c + m);
         int e_new = (e >= c ? e - c : e - c + m);
 
-        if (s <= e && s <= c && c <= e || s > e && (s <= c || e >= c))
+        if (s <= e && s < c && c <= e || s > e && (s < c || c <= e))
             overlap.push_back(make_pair(s_new, e_new));
         else
             no_overlap.push_back(make_pair(s_new, e_new));
     }
-
-    //  cout << "size: overlap: " << overlap.size() << " no overlap: " << no_overlap.size() << endl;
 
     // sort non-overlapping in EDF manner with respect to best_sector as starting point
     sort(no_overlap.begin(), no_overlap.end(), [](pair<int, int> j1, pair<int, int> j2) {
         return (j1.second < j2.second);
     });
 
-    /*   cout << "m is: " << m << " best seg: " << best_sector << endl;
-    for (auto jedi : no_overlap)
-        cout << jedi.first << " - " << jedi.second << " ";
-
-    cout << endl; */
-
     // take best_sector as starting point for EDF algorithm
     // for every overlaping jedi, pre-select it and run the algorithm from its end-point to its start-point with non-overlapping segments
+    // or choose none of the overlapping segments
     int best = EDF(no_overlap, 0, m - 1);
     for (auto jedi : overlap)
-        best = max(best, EDF(no_overlap, jedi.second + 1, (jedi.first - 1 + m) % m) + 1);
+        best = max(best, EDF(no_overlap, jedi.second + 1, jedi.first - 1) + 1);
 
     cout << best << "\n";
 }
