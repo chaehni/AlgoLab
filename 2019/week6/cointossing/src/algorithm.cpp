@@ -67,10 +67,8 @@ void run()
         }
         else // undecided, both could have won
         {
-            int game = add_vertex(G);
-            eag.add_edge(src, game, 1);
-            eag.add_edge(game, a, 1);
-            eag.add_edge(game, b, 1);
+            eag.add_edge(src, a, 1);
+            eag.add_edge(a, b, 1);
         }
     }
 
