@@ -52,12 +52,13 @@
 | 7                    | Diet                            | 100    | linear programming                                                                                                |
 | 7                    | Portfolios                      | 100    | quadratic programming, minimize over variance matrix                                                              |
 | 7                    | Inball                          | 100    | linear programming, find closest point to every halfspace border and check                                        |
-| PotW 8               | London                          | 100    | max flow, edges between front/back letter combinations                                                            |
+| PotW 8 (2018)        | London                          | 100    | max flow, edges between front/back letter combinations                                                            |
+| PotW 8 (2019)        | Cantonal Courier                | 100    | max flow                                                                                                          |
 | 8                    | Graypes                         | 100    | Delauny triangulation, taking shortest edge                                                                       |
 | 8                    | Bistro                          | 100    | voronoi using Delauny triangulation                                                                               |
 | 8                    | H1N1                            | 100    | Delauny/voronoi duality and precomputing largest escape path                                                      |
 | 8                    | Germs                           | 100    | Delauny for nearest neighbour graph                                                                               |
-| PotW 9               | Suez                            | 100    | find constraints/objective and solve with LP                                                                      |
+| PotW 9 (2018 & 2019) | Suez                            | 100    | find constraints/objective and solve with LP                                                                      |
 | 9                    | Satellites                      | 100    | max cardinality matching in bipartite graph & König algorithm                                                     |
 | 9                    | Algocoön                        | 100    | max flow / min cut with multiple min cuts                                                                         |
 | 9                    | Real Estate Market              | 100    | min cost matching                                                                                                 |
