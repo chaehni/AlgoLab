@@ -36,7 +36,7 @@ void run()
     Triangulation t;
     t.insert(lights.begin(), lights.end());
 
-    // go through all participants and register first light that eliminates him
+    // go through all participants and register first light that eliminates them
     // if we find a participant who does not get eliminated, we only need to check the same for subsequent participants
     vector<int> die_times(m, n);
     bool check_all = true;
@@ -78,13 +78,10 @@ void run()
         }
         else if (die_times[i] > winning_time)
         {
-            //   cout << "in " << endl;
             winning_time = die_times[i];
             winners.clear();
             winners.push_back(i);
         }
-
-        // cout << "size " << winners.size() << endl;
     }
     for (int w : winners)
         cout << w << " ";
