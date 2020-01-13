@@ -86,7 +86,7 @@ void run()
     // add links for every item
     for (int i = 0; i < n - 1; i++)
     {
-        for (int j = 1; j < n; j++)
+        for (int j = i + 1; j < n; j++)
         {
             // find bottle neck from i to j
             int min_cap = INT32_MAX;
@@ -114,8 +114,6 @@ void run()
     out_edge_it e, eend;
     for (boost::tie(e, eend) = boost::out_edges(boost::vertex(src, G), G); e != eend; ++e)
         flow += c_map[*e] - rc_map[*e];
-
-    //cout << "flow " << flow << endl;
 
     cout << flow * max_sig - cost << "\n";
 }
