@@ -1,9 +1,7 @@
 #include <iostream>
 #include <vector>
+#include <algorithm>
 
-// Includes
-// ========
-#include <iostream>
 // BGL includes
 #include <boost/graph/adjacency_list.hpp>
 #include <boost/graph/cycle_canceling.hpp>
@@ -48,19 +46,13 @@ public:
 
 using namespace std;
 
-struct Item
-{
-    int a;
-    int b;
-    int d;
-};
-
 void run()
 {
     int n, m;
     cin >> n >> m;
     vector<int> cap(n - 1);
-    vector<Item> items(m);
+    //vector<Item> items(m);
+    vector<vector<vector<int>>> items(n - 1, vector<vector<int>>(n));
     int max_sig = 1 << 7;
 
     for (int i = 0; i < n - 1; i++)
@@ -70,7 +62,7 @@ void run()
     {
         int a, b, d;
         cin >> a >> b >> d;
-        items[i] = {a, b, d};
+        items[a][b].push_back(d);
     }
 
     graph G(n);
@@ -92,8 +84,28 @@ void run()
         eag.add_edge(i, i + 1, cap[i], max_sig);
 
     // add links for every item
-    for (auto i : items)
-        eag.add_edge(i.a, i.b, 1, (i.b - i.a) * max_sig - i.d);
+    for (int i = 0; i < n - 1; i++)
+    {
+        for (int j = 1; j < n; j++)
+        {
+            // find bottle neck from i to j
+            int min_cap = INT32_MAX;
+            for (int l = i; l < j; l++)
+                min_cap = min(min_cap, cap[l]);
+
+            if (items[i][j].size() > min_cap)
+            {
+                sort(items[i][j].begin(), items[i][j].end(), [](int a, int b) { return a > b; });
+                for (int k = 0; k < min_cap; k++)
+                    eag.add_edge(i, j, 1, (j - i) * max_sig - items[i][j][k]);
+            }
+            else
+            {
+                for (int sig : items[i][j])
+                    eag.add_edge(i, j, 1, (j - i) * max_sig - sig);
+            }
+        }
+    }
 
     // calculate min cost flow
     boost::successive_shortest_path_nonnegative_weights(G, src, dst);
