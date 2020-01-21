@@ -31,8 +31,8 @@ void run()
     vector<int> leg;
     multiset<int> t;
     map<int, bool> visited;
-    vector<int> safe;
     int last_index = -1;
+    vector<bool> starting_point(n);
 
     while (!s.empty())
     {
@@ -56,29 +56,25 @@ void run()
 
         // check for temperature diff
         if (t.size() >= m && abs(*(--t.end()) - *t.begin()) <= k)
-            safe.push_back(leg[last_index - m + 1]);
+            starting_point[leg[last_index - m + 1]] = true;
 
         // push children
         for (auto c : tree[cur])
             s.push(c);
     }
 
-    // sort points
-    sort(safe.begin(), safe.end());
-
-    // output
-    if (safe.size() == 0)
+    bool possible = false;
+    for (int i = 0; i < n; i++)
     {
-        cout << "Abort mission\n";
+        if (starting_point[i])
+        {
+            possible = true;
+            cout << i << " ";
+        }
     }
-    else
-    {
-        cout << safe[0] << " ";
-        for (int i = 1; i < safe.size(); i++)
-            if (safe[i] != safe[i - 1])
-                cout << safe[i] << " ";
-        cout << "\n";
-    }
+    if (!possible)
+        cout << "Abort mission";
+    cout << "\n";
 }
 
 int main(int argc, char const *argv[])
