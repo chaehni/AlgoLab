@@ -51,7 +51,6 @@ void run()
     int n, m;
     cin >> n >> m;
     vector<int> cap(n - 1);
-    //vector<Item> items(m);
     vector<vector<vector<int>>> items(n - 1, vector<vector<int>>(n));
     int max_sig = 1 << 7;
 
