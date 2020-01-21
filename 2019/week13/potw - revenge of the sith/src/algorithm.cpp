@@ -68,6 +68,8 @@ void run()
                 }
             } while (++c != t.incident_edges(v));
         }
+        if (i < best)
+            break;
         best = max(best, min(i, clust_size[uf.find_set(i)]));
     }
     cout << best << "\n";
