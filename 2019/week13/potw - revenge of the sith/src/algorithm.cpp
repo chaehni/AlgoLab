@@ -45,15 +45,15 @@ void run()
         // if yes, join the two sets
         auto v = t.insert(planets[i]);
         v->info() = i;
-        Triangulation::Edge_circulator c = t.incident_edges(v);
+        Triangulation::Vertex_circulator c = t.incident_vertices(v);
         if (c != 0)
         {
             do
             {
                 if (!t.is_infinite(c))
                 {
-                    int neighbour = c->first->vertex(c->first->ccw(c->second))->info();
-                    K::FT dist = t.segment(*c).squared_length();
+                    int neighbour = c->info();
+                    K::FT dist = CGAL::squared_distance(v->point(), c->point());
                     if (dist <= r * r)
                     {
 
@@ -66,7 +66,7 @@ void run()
                         }
                     }
                 }
-            } while (++c != t.incident_edges(v));
+            } while (++c != t.incident_vertices(v));
         }
         if (i < best)
             break;
