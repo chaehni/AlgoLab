@@ -24,10 +24,11 @@ bool solve(int d, vector<vector<vector<ET>>> &cells, int h)
     // create an LP with Ax <= b, no bounds
     Program lp(CGAL::SMALLER, false, 0, false, 0);
 
-    // loop over all healthy cells
+    // loop over all cells
+    int eps = 0;
     for (int c = 0; c < cells.size(); c++)
     {
-        int term_cnt = 0;
+        int term_cnt = 1;
         // generate the terms of the polynomial of degree d
         for (int x = 0; x <= d; x++)
             for (int y = 0; y <= d - x; y++)
@@ -36,28 +37,33 @@ bool solve(int d, vector<vector<vector<ET>>> &cells, int h)
 
         if (c < h)
         {
+            lp.set_a(eps, c, 1);
             lp.set_r(c, CGAL::SMALLER);
-            lp.set_b(c, -1);
+            lp.set_b(c, 0);
         }
         else
         {
+            lp.set_a(eps, c, -1);
             lp.set_r(c, CGAL::LARGER);
-            lp.set_b(c, 1);
+            lp.set_b(c, 0);
         }
     }
 
-    // no cost function
+    // maximize distance from zero
+    lp.set_c(eps, -1);
+
     CGAL::Quadratic_program_options options;
     options.set_pricing_strategy(CGAL::QP_BLAND);
     Solution s = CGAL::solve_linear_program(lp, ET(), options);
 
     assert(s.solves_linear_program(lp));
-    return s.is_optimal();
+    return s.is_unbounded(); // epsilon must be unbounded
 }
 
 void run()
 {
     int h, t;
+
     cin >> h >> t;
     vector<vector<vector<ET>>> cells(h + t, vector<vector<ET>>(3, vector<ET>(31)));
 
@@ -70,19 +76,30 @@ void run()
         powers(cells[i][2], z);
     }
 
-    // replace ths loop with binary search
-    bool feasable = false;
-    for (int d = 0; d <= 30; d++)
+    // binary search to find smallest d for which polynomial exists
+    int l = 0;
+    int r = 30;
+    int m = 5; // chose a relatively low starting point (otherwise binary search takes longer than a simple for loop)
+
+    int smallest = -1;
+    while (l != r)
     {
-        feasable = solve(d, cells, h);
-        if (feasable)
+        if (solve(m, cells, h))
         {
-            cout << d << "\n";
-            return;
+            r = m;
+            smallest = m;
         }
+        else
+        {
+            l = m + 1;
+        }
+        m = (l + r) / 2;
     }
 
-    cout << "Impossible!\n";
+    if (smallest != -1)
+        cout << l << "\n";
+    else
+        cout << "Impossible!\n";
 }
 
 int main(int argc, char const *argv[])
