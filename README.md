@@ -44,7 +44,6 @@
 | 5 (2019)              | Octopussy                       | 100    | greedy with recursive dependency resolution                                                                       |
 | 5 (2019)              | Planks                          | 100    | Split & List with to bits per plank                                                                               |
 | PotW 6 (2018 & 2019)  | Planet Express                  | 100    | strong components & Dijkstra                                                                                      |
-| PotW 6 (2019)         | Attack of the Clones            | 100    | greedy, earliest deadline first in a circle                                                                       |
 | 6                     | Coin Tossing                    | 100    | max flow, making sure claimed scores and flow match number of games                                               |
 | 6                     | Shopping Trip                   | 100    | max flow, adding edges between junctions in both directions                                                       |
 | 6                     | Kingdom Defence                 | 100    | max flow with edge demand (min capacity)                                                                          |
@@ -80,7 +79,7 @@
 | 10 (2019)             | Moving Books                    | 100    | greedy, in every round everyone picks the heaviest box he can                                                     |
 | PotW 11 (2018 & 2019) | India                           | 100    | min cost max flow, binary search on number of suitcases to find maximum that still respects budget (see Marathon) |
 | 11                    | The Empire Strikes Back         | 100    | Delaunay for finding max radius per shot, then LP for solving for required energy                                 |
-| 11                    | Planks                          | 100    | Split & List with to bits per plank                                                                               |
+| 11 (2018)                    | Planks                          | 100    | Split & List with to bits per plank                                                                               |
 | 11                    | Carsharing                      | 100    | min cost max flow with a space-time graph and clever edge weights                                                 |
 | 11                    | San Francisco                   | 100    | binary search over recursive function to find smallest k to achieve x points                                      |
 | 11 (2019)             | DHL                             | 100    | DP making use of the nature of the cost function                                                                  |
